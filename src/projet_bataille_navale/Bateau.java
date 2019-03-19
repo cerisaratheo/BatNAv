@@ -6,14 +6,14 @@ public class Bateau {
 	
 	private String nomType;
 	private int taille;
-	private boolean estTouché;
+	private boolean estTouche;
 	
-	public boolean isEstTouché() {
-		return estTouché;
+	public boolean isEstTouche() {
+		return estTouche;
 	}
 
-	public void setEstTouché(boolean estTouché) {
-		this.estTouché = estTouché;
+	public void setEstTouché(boolean estTouche) {
+		this.estTouche = estTouche;
 	}
 
 	public Bateau(String n) {
