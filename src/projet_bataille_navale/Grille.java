@@ -8,5 +8,7 @@ public class Grille {
 	
 	Case[][] grille = new Case[10][10];
 	
-	
+	public ArrayList<Bateau> triTaille() {
+		
+	}
 }
