@@ -4,7 +4,5 @@ import java.util.*;
 
 public class Bateau {
 	
-	public static void main(String[] args) {
-
-	}
+	
 }
