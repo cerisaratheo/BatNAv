@@ -7,6 +7,7 @@ package projet_bataille_navale;
 public class Croiseur extends Bateau {
 	
 	private static final int taille = 4;
+	private final static String nom = "croiseur";
 
 	/**
 	 * Constructeur d'un croiseur
@@ -21,6 +22,13 @@ public class Croiseur extends Bateau {
 	 */
 	public int getTaille() {
 		return taille;
+	}
+	
+	/**
+	 * @return le nom du bateau
+	 */
+	public String getNom() {
+		return nom;
 	}
 
 	/* (non-Javadoc)

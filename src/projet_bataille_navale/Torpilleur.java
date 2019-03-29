@@ -6,7 +6,8 @@ package projet_bataille_navale;
  */
 public class Torpilleur extends Bateau {
 	
-	private static final int taille = 2;
+	private final static int taille = 2;
+	private final static String nom = "torpilleur";
 
 	/**
 	 * Constructeur d'un torpilleur
@@ -21,6 +22,13 @@ public class Torpilleur extends Bateau {
 	 */
 	public int getTaille() {
 		return taille;
+	}
+	
+	/**
+	 * @return le nom du bateau
+	 */
+	public String getNom() {
+		return nom;
 	}
 
 	/* (non-Javadoc)

@@ -64,7 +64,7 @@ public class Bateau {
 	 */
 	@Override
 	public String toString() {
-		return "  Bateau de type : "+this.getClass()+", de taille : "+this.getLongueur()+" dispose de : "+this.getPv()+" pv.";
+		return ("Bateau de type : " + this.getClass() + ", de taille : " + this.getLongueur() + " dispose de : " + this.getPv() + " pv.");
 	}
 
 	/**

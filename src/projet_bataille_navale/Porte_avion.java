@@ -6,7 +6,8 @@ package projet_bataille_navale;
  */
 public class Porte_avion extends Bateau {
 	
-	private static final int taille = 5;
+	private final static int taille = 5;
+	private final static String nom = "porte avion";
 
 	/**
 	 * Constructeur d'un porte-avion
@@ -17,10 +18,17 @@ public class Porte_avion extends Bateau {
 	}
 
 	/**
-	 * @return the taille
+	 * @return la taille du bateau
 	 */
 	public int getTaille() {
 		return taille;
+	}
+	
+	/**
+	 * @return le nom du bateau
+	 */
+	public String getNom() {
+		return nom;
 	}
 
 	/* (non-Javadoc)
