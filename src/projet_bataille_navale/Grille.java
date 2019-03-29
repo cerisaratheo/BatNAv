@@ -1,5 +1,5 @@
 /**
- * Class representant la grille de jeu.
+ * Classe representant la grille de jeu.
  * 
  */
 public class Grille {
