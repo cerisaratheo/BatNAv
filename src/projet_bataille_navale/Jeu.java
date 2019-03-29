@@ -33,7 +33,6 @@ public class Jeu {
 		taille_grille_y += 1;
 		
 		grille_1 = new Grille(taille_grille_x, taille_grille_y);
-		grille_2 = new Grille(taille_grille_x, taille_grille_y);
 		
 		System.out.println("Choix du nom de joueur 1 :\n");
 		String nom1 = sc.next();
