@@ -48,7 +48,7 @@ public class Jeu {
 		//placement des bâteaux : joueur_1
 		for (int i=0; i<joueur_1.getListe_bateau().size(); i++) {
 			try {
-				System.out.println("\nBateau de type : " + joueur_1.getListe_bateau().get(i).getClass() + " de longueur : " + joueur_1.getListe_bateau().get(i).getLongueur());
+				System.out.println("\nBateau de type : " + joueur_1.getListe_bateau().get(i).getNom() + " de longueur : " + joueur_1.getListe_bateau().get(i).getLongueur());
 				System.out.println("\nEntrer position x : ");
 				x = sc.nextInt();
 				System.out.println("Entrer position y : ");
@@ -72,7 +72,7 @@ public class Jeu {
 		//Iteration de jeu
 		while (true) {
 			try {
-				boolean etat1, etat2;
+				boolean etat1;
 				String continuer;
 				
 				//attaque joueur 1

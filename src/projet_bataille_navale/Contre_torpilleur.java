@@ -14,7 +14,7 @@ public class Contre_torpilleur extends Bateau {
 	 * @param p_orientation orientation du bateau courant
 	 */
 	public Contre_torpilleur(int p_orientation) {
-		super(taille, p_orientation);
+		super(nom, taille, p_orientation);
 	}
 
 	/**
@@ -22,13 +22,6 @@ public class Contre_torpilleur extends Bateau {
 	 */
 	public int getTaille() {
 		return taille;
-	}
-	
-	/**
-	 * @return le nom du bateau
-	 */
-	public String getNom() {
-		return nom;
 	}
 	
 	/* (non-Javadoc)

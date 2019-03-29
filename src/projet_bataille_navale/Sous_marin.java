@@ -14,7 +14,7 @@ public class Sous_marin extends Bateau {
 	 * @param p_orientation orientation du bateau courant
 	 */
 	public Sous_marin(int p_orientation) {
-		super(taille, p_orientation);
+		super(nom, taille, p_orientation);
 	}
 
 	/**

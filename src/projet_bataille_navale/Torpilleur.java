@@ -14,7 +14,7 @@ public class Torpilleur extends Bateau {
 	 * @param p_orientation orientation du bateau courant
 	 */
 	public Torpilleur(int p_orientation) {
-		super(taille, p_orientation);
+		super(nom, taille, p_orientation);
 	}
 
 	/**

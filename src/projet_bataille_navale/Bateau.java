@@ -7,16 +7,18 @@ package projet_bataille_navale;
 public class Bateau {
 
 	private int longueur, orientation, pv;
+	private String nom;
 	
 	/**
 	 * Constructeur d'un bateau
 	 * @param p_longueur longueur du bateau
 	 * @param p_orientation orientation du bateau sur la grille
 	 */
-	public Bateau(int p_longueur, int p_orientation) {
+	public Bateau(String p_nom, int p_longueur, int p_orientation) {
 		this.pv = p_longueur;
 		this.longueur = p_longueur;
 		this.orientation = p_orientation;
+		this.nom = p_nom;
 	}
 	
 	/**
@@ -29,6 +31,13 @@ public class Bateau {
 			tmp = false;
 		}
 		return tmp;
+	}
+	
+	/**
+	 * @return le nom du bateau
+	 */
+	public String getNom() {
+		return this.nom;
 	}
 
 	/**
@@ -64,7 +73,7 @@ public class Bateau {
 	 */
 	@Override
 	public String toString() {
-		return ("Bateau de type : " + this.getClass() + ", de taille : " + this.getLongueur() + " dispose de : " + this.getPv() + " pv.");
+		return ("Bateau de type : " + this.getNom() + ", de taille : " + this.getLongueur() + " dispose de : " + this.getPv() + " pv.");
 	}
 
 	/**
