@@ -1,3 +1,5 @@
+package projet_bataille_navale;
+
 /**
  * Classe representant la grille de jeu.
  * 

@@ -1,3 +1,5 @@
+package projet_bataille_navale;
+
 import java.util.*;
 
 public class Jeu {
@@ -21,7 +23,7 @@ public class Jeu {
 		liste_bateau.add(new Croiseur(0));
 		liste_bateau.add(new Contre_torpilleur(0));
 		
-		//Début de l'affichage, on demande à l'utilisateurs les informations requises
+		//Debut de l'affichage, on demande � l'utilisateurs les informations requises
 		System.out.println("\nBataille navale.\nMode de jeu : Mono-Joueur");
 		System.out.println("Choix de le taille de la grille ,\nx : ");	
 		taille_grille_x = sc.nextInt();

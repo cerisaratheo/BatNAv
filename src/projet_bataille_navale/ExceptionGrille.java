@@ -1,3 +1,4 @@
+package projet_bataille_navale;
 
 @SuppressWarnings("serial")
 public class ExceptionGrille extends Exception {

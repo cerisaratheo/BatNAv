@@ -1,3 +1,4 @@
+package projet_bataille_navale;
 
 /**
  * Class bateau representant un bateau.
