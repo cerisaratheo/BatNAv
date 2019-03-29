@@ -90,11 +90,11 @@ public class Case {
 	@Override
 	public String toString() {
 		if (this.etreTouchee() == true){
-			return "| O |";
+			return " O ";
 		}
 		if (this.etreOccupee() == true) {
-			return "| X |";
+			return " X ";
 		}
-		return "| . |";
+		return " . ";
 	}
 }

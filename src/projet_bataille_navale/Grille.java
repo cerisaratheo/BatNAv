@@ -6,6 +6,9 @@ package projet_bataille_navale;
  */
 public class Grille {
 
+	public final static int HORIZONTAL = 1;
+	public final static int VERTICAL= 2;
+
 	private Case[][] grille;
 	private int taille_x, taille_y;
 
@@ -34,8 +37,12 @@ public class Grille {
 	/**
 	 * @return the taille
 	 */
-	public int getTaille() {
+	public int getTailleX() {
 		return taille_x;
+	}
+	
+	public int getTailleY() {
+		return taille_y;
 	}
 
 	/**
@@ -47,40 +54,42 @@ public class Grille {
 	 */
 	public boolean positionnerBateau(Bateau p_bateau, Case p_case) throws ExceptionHorsDuTableau, ExceptionGrille {
 		int longueur = p_bateau.getLongueur();
-		if (p_case.getX() > this.taille_x + 1 || p_case.getX() < 0 || p_case.getY() > this.taille_y + 1 || p_case.getY() < 0) {
-			throw new ExceptionHorsDuTableau();
-		} else if (p_case.etreOccupee() == false) {
-			if (p_bateau.getOrientation() == 1) {
-				// horizontal
-				grille[p_case.getX()][p_case.getY()].devenirOccupee(p_bateau);
-				for (int i = 1; i < longueur; i++) {
-					Case e = grille[p_case.getX()][p_case.getY()+i];
-					if (e.getX() > this.taille_x + 1 || e.getX() < 0 || e.getY() > this.taille_y + 1 || e.getY() < 0) {
-						throw new ExceptionHorsDuTableau();
-					} else {
-						grille[p_case.getX()][p_case.getY()+i].devenirOccupee(p_bateau);
-					}
-				}
-				return true;
-			} else if (p_bateau.getOrientation() == 2) {
-				// vertical
-				grille[p_case.getX()][p_case.getY()].devenirOccupee(p_bateau);
-				for (int i = 1; i < longueur; i++) {
-					Case e = grille[p_case.getX()+i][p_case.getY()];
-					if (e.getX() > this.taille_x + 1 || e.getX() < 0 || e.getY() > this.taille_y + 1 || e.getY() < 0) {
-						throw new ExceptionHorsDuTableau();
-					} else {
-						grille[p_case.getX()+i][p_case.getY()].devenirOccupee(p_bateau);
-					}
-				}
-				return true;
+		if (p_bateau.getOrientation() == HORIZONTAL) {
+			// horizontal
+			if (p_case.getY()+longueur>=this.taille_y) 
+				throw new ExceptionHorsDuTableau();
+			// on verifie dans une premiere boucle que toutes les cases sont OK
+			for (int i = 0; i < longueur; i++) {
+				Case e = grille[p_case.getX()][p_case.getY()+i];
+				if (e.etreOccupee() == true) throw new ExceptionGrille();
+				if (e.getX() >= this.taille_x || e.getX() < 0 || e.getY() >= this.taille_y || e.getY() < 0)
+					throw new ExceptionHorsDuTableau();
 			}
-		} else {
-			throw new ExceptionGrille();
+			// tout est bon, on peut poser
+			for (int i = 0; i < longueur; i++) {
+				grille[p_case.getX()][p_case.getY()+i].devenirOccupee(p_bateau);
+			}
+			return true;
+		} else if (p_bateau.getOrientation() == VERTICAL) {
+			// vertical
+			if (p_case.getX()+longueur>=this.taille_x) 
+				throw new ExceptionHorsDuTableau();
+			// on verifie dans une premiere boucle que toutes les cases sont OK
+			for (int i = 0; i < longueur; i++) {
+				Case e = grille[p_case.getX()+i][p_case.getY()];
+				if (e.etreOccupee() == true) throw new ExceptionGrille();
+				if (e.getX() >= this.taille_x || e.getX() < 0 || e.getY() >= this.taille_y || e.getY() < 0)
+					throw new ExceptionHorsDuTableau();
+			}
+			// tout est bon, on peut poser
+			for (int i = 0; i < longueur; i++) {
+				grille[p_case.getX()+i][p_case.getY()].devenirOccupee(p_bateau);
+			}
+			return true;
 		}
 		return false;
 	}
-	
+
 
 
 	/**
@@ -88,26 +97,22 @@ public class Grille {
 	 */
 	public void afficherGrille() {
 		System.out.print("\n");
-		for (int i = 0; i < taille_x; i++) {
-			for (int j = 0; j < taille_y; j++) {
-				if (i == 0) {
-					if (j == 0) {
-						System.out.print("\n||||||");
-					} else if (j < 10) {
-						System.out.print("| " + j + " |");
-					} else {
-						System.out.print("| " + j + "|");
-					}
 
-				} else if (j == 0) {
-					if (i < 10) {
-						System.out.print("\n| " + i + "  |");
-					} else {
-						System.out.print("\n| " + i + " |");
-					}
-				} else {
-					System.out.print(grille[i][j].toString());
-				}
+		// longueur maximale du nb X
+		int maxX = Integer.toString(taille_x).length();
+		
+		System.out.print("\n||");
+		for (int i=0;i<maxX+2;i++) System.out.print("|");
+		for (int j = 1; j <= taille_y; j++) System.out.print("| " + j + " |");
+
+		for (int i = 1; i <= taille_x; i++) {
+			System.out.print("\n| " + i);
+			for (int k = 0; k<maxX-Integer.toString(i).length(); k++) System.out.print(" ");
+			System.out.print(" |");
+			for (int j = 1; j <= taille_y; j++) {
+				System.out.print('|'+grille[i-1][j-1].toString());
+				for (int k=0;k<Integer.toString(j).length()-1;k++) System.out.print(" ");
+				System.out.print('|');
 			}
 		}
 	}
@@ -119,7 +124,7 @@ public class Grille {
 	 * @return la case cherchee
 	 */
 	public Case getCase(int p_x, int p_y) throws ExceptionHorsDuTableau {
-		if (p_x < 1 || p_x > taille_x || p_y < 1 || p_y > taille_y) {
+		if (p_x < 0 || p_x >= taille_x || p_y < 0 || p_y >= taille_y) {
 			throw new ExceptionHorsDuTableau();
 		}
 		return this.grille[p_x][p_y];

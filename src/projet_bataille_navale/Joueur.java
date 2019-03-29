@@ -56,18 +56,18 @@ public class Joueur {
 
 	/**
 	 * Methode qui permet au bateau courant de subir une attaque
-	 * @param p_bateau bateau victime
-	 * @param p_position case sur laquelle subir le tir
+	 * @param p_position case contenant le bateau sur laquelle subir le tir
+	 * @param caseDeTir case pour afficher les tirs
 	 */
-	public void subirTir(Bateau p_bateau, Case p_position) throws ExceptionCaseImpactee {
-		p_position.devenirTouchee();
+	public boolean subirTir(Case p_position, Case caseDeTir) {
+		caseDeTir.devenirTouchee();
 		if (p_position.etreOccupee() == true) {
-			if (p_position.occupePar() == p_bateau) {
-				p_bateau.moinsUnPv();
-			}
-		} else {
-			System.out.println("\nTir porté sur une case vide.\n");
-		}
+			Bateau bateau = p_position.occupePar();
+			// on ajoute artificiellement un bout de bateau dans la grille des tirs lorsqu'il y avait un bateau a cet endroit, ce qui permet d'afficher differemment un tir avec et sans bateau
+			caseDeTir.devenirOccupee(bateau);
+			bateau.moinsUnPv();
+			return true;
+		} else return false;
 	}
 
 	/**
@@ -76,15 +76,11 @@ public class Joueur {
 	 * @return booleen indiquant true si l'attaque a bien ete portee
 	 * @throws ExceptionCaseImpactee
 	 */
-	public boolean lancerTir(Case p_position) throws ExceptionCaseImpactee {
+	public boolean lancerTir(Case p_position, Case caseDeTir) throws ExceptionCaseImpactee {
 		if (p_position.etreTouchee() == true) {
 			throw new ExceptionCaseImpactee();
 		}
-		if (p_position.etreOccupee() == true) {
-			subirTir(p_position.occupePar(), p_position);
-			return true;
-		}
-		return false;
+		return subirTir(p_position, caseDeTir);
 	}
 	
 	/**
