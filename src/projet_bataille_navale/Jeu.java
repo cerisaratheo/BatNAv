@@ -10,8 +10,8 @@ public class Jeu {
 		
 		//Initialisation des variables.
 		Scanner sc = new Scanner(System.in);
-		Grille grille_1, grille_2;
-		Joueur joueur_1, joueur_2;
+		Grille grille_1;
+		Joueur joueur_1;
 		Case position_encrage;
 		int taille_grille_x, taille_grille_y, x, y, orientation;
 		
@@ -43,9 +43,9 @@ public class Jeu {
 		System.out.println("\nJoueur 1, " + nom1 + " :\n");
 		joueur_1.afficherListe_bateau();
 		grille_1.afficherGrille();
-		System.out.println("\nPlacement des bâteaux sur la grille :\n");
+		System.out.println("\nPlacement des bateaux sur la grille :\n");
 		
-		//placement des bâteaux : joueur_1
+		//placement des bateaux : joueur_1
 		for (int i=0; i<joueur_1.getListe_bateau().size(); i++) {
 			try {
 				System.out.println("\nBateau de type : " + joueur_1.getListe_bateau().get(i).getNom() + " de longueur : " + joueur_1.getListe_bateau().get(i).getLongueur());
@@ -60,12 +60,12 @@ public class Jeu {
 				grille_1.positionnerBateau(joueur_1.getListe_bateau().get(i), position_encrage);
 				grille_1.afficherGrille();
 			} catch (ExceptionGrille e) {
-				//trouver moyen de relancer le placement du bateau qui a été sauté.
-				System.out.println("Un bâteau se trouve déjà à cet endroit. Ou le point d'encrage n'est pas correct.\n");
+				//trouver moyen de relancer le placement du bateau qui a ete saute.
+				System.out.println("Un bateau se trouve deja�a cet endroit. Ou le point d'encrage n'est pas correct.\n");
 			} catch (ExceptionHorsDuTableau e) {
-				System.out.println("Coordonnées spécifiées se trouvent hors de la grille.");
+				System.out.println("Coordonnees specifiees se trouvent hors de la grille.");
 			} catch (InputMismatchException e) {
-				System.out.println("Entrer des valeurs numériques svp.");
+				System.out.println("Entrer des valeurs numeriques svp.");
 			}
 		}
 		
@@ -104,12 +104,12 @@ public class Jeu {
 				}
 				
 			} catch (ExceptionCaseImpactee e) {
-				System.out.println("La case spécifiée a déjà été touchée par un tir, vous passez votre tour.");
+				System.out.println("La case specifiee a deja�ete touchee par un tir, vous passez votre tour.");
 			} catch (ExceptionHorsDuTableau e) {
-				System.out.println("La case spécifiée se trouve hors de la grille.");
+				System.out.println("La case specifiee se trouve hors de la grille.");
 			}
 		}
-		System.out.println("Arrêt de jeu.");
+		System.out.println("Arret de jeu.");
 		sc.close();
 	}
 

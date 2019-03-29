@@ -29,7 +29,7 @@ public class Sauvegarde {
 			oos.writeObject(joueur);
 			oos.close();
 		} catch (IOException e) {
-			System.out.println("erreur d’E/S");
+			System.out.println("erreur d'E/S");
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println("erreur hors E/S");
@@ -46,7 +46,7 @@ public class Sauvegarde {
 			joueur = (Joueur)(ois.readObject());
 			ois.close();
 		} catch (IOException e) {
-			System.out.println("erreur d’E/S");
+			System.out.println("erreur d'E/S");
 			e.printStackTrace();
 		} catch (Exception e) {
 			System.out.println("erreur hors E/S");
