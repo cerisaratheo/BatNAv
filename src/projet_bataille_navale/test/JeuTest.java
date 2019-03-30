@@ -1,18 +1,25 @@
-package projet_bataille_navale;
+package projet_bataille_navale.test;
 
-import java.util.*;
+import java.util.ArrayList;
 
-public class Jeu {
+import projet_bataille_navale.Bateau;
+import projet_bataille_navale.ConsoleAuto;
+import projet_bataille_navale.Contre_torpilleur;
+import projet_bataille_navale.Croiseur;
+import projet_bataille_navale.GUI;
+import projet_bataille_navale.Grille;
+import projet_bataille_navale.Joueur;
+import projet_bataille_navale.Porte_avion;
+import projet_bataille_navale.Sous_marin;
+import projet_bataille_navale.Torpilleur;
+
+public class JeuTest {
 	public static void main(String[] args) {
-		///////////////////////////////////
-		///////////MONO-JOUEUR/////////////
-		///////////////////////////////////
-		
 		//Initialisation des variables.
 		Grille grille_1;
 		Joueur joueur_1;
 	
-		GUI gui = new Console();
+		GUI gui = new ConsoleAuto();
 		
 		//Remplissage liste de bateau type.
 		ArrayList<Bateau> liste_bateau = new ArrayList<Bateau>();

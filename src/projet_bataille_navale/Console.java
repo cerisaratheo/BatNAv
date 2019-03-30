@@ -14,7 +14,7 @@ public class Console implements GUI {
 		// on cree une grille vide pour les tirs
 		Grille gtirs = new Grille(g.getTailleX(), g.getTailleY());
 		//Iteration de jeu
-		while (true) {
+		while (!j.aPerdu()) {
 			try {
 				boolean etat1;
 				String continuer;
@@ -39,8 +39,13 @@ public class Console implements GUI {
 				} else {
 					System.out.println("Tir manque");
 				}
-				System.out.println("Afficher votre liste de bateau ? (oui/non)");
+				System.out.println("Afficher votre liste de bateau ? (1: tri par taille; 2: tri par % impact; 3: rien)");
 				continuer = sc.next();
+				switch(continuer) {
+				case "1": j.afficherListe_bateauParTaille(); break;
+				case "2": j.afficherListe_bateauParImpact(); break;
+				default: break;
+				}
 				if (continuer.equals("oui")) {
 					j.afficherListe_bateau();
 				}

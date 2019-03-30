@@ -1,10 +1,12 @@
 package projet_bataille_navale;
 
+import java.io.Serializable;
+
 /**
  * Class bateau representant un bateau.
  *
  */
-public class Bateau {
+public class Bateau implements Serializable {
 
 	private int longueur, orientation, pv;
 	private String nom;
@@ -26,11 +28,7 @@ public class Bateau {
 	 * @return true si le bateau est mort
 	 */
 	public boolean etreCoule() {
-		boolean tmp = false;
-		if (this.pv < 1) {
-			tmp = false;
-		}
-		return tmp;
+		return this.pv<=0;
 	}
 	
 	/**

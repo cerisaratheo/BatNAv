@@ -1,12 +1,13 @@
 package projet_bataille_navale;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Class representant un joueur
  * 
  */
-public class Joueur {
+public class Joueur implements Serializable {
 
 	private String nom;
 	private ArrayList<Bateau> liste_bateau;
@@ -46,6 +47,40 @@ public class Joueur {
 			System.out.println(this.liste_bateau.get(i).toString());
 		}
 	}
+	
+	/**
+	 * Methode qui affiche la liste des bateaux d'un joueur
+	 */
+	public void afficherListe_bateauParTaille() {
+		liste_bateau.sort(new Comparator<Bateau>() {
+			@Override
+			public int compare(Bateau o1, Bateau o2) {
+				if (o1.getLongueur()<o2.getLongueur()) return -1;
+				if (o1.getLongueur()>o2.getLongueur()) return 1;
+				return 0;
+			}
+		});
+		System.out.println("\n======= liste triee par taille =======");
+		afficherListe_bateau();
+	}
+
+	/**
+	 * Methode qui affiche la liste des bateaux d'un joueur
+	 */
+	public void afficherListe_bateauParImpact() {
+		liste_bateau.sort(new Comparator<Bateau>() {
+			@Override
+			public int compare(Bateau o1, Bateau o2) {
+				float pi1 = (float)(o1.getLongueur()-o1.getPv())/(float)(o1.getLongueur());
+				float pi2 = (float)(o2.getLongueur()-o2.getPv())/(float)(o2.getLongueur());
+				if (pi1>pi2) return -1;
+				if (pi1<pi2) return 1;
+				return 0;
+			}
+		});
+		System.out.println("\n======= liste triee par % d'impact =======");
+		afficherListe_bateau();
+	}
 
 	/**
 	 * @return grille du joueur
@@ -65,7 +100,10 @@ public class Joueur {
 			Bateau bateau = p_position.occupePar();
 			// on ajoute artificiellement un bout de bateau dans la grille des tirs lorsqu'il y avait un bateau a cet endroit, ce qui permet d'afficher differemment un tir avec et sans bateau
 			caseDeTir.devenirOccupee(bateau);
-			bateau.moinsUnPv();
+			if (!p_position.etreTouchee()) {
+				bateau.moinsUnPv();
+				p_position.devenirTouchee();
+			}
 			return true;
 		} else return false;
 	}
@@ -88,18 +126,10 @@ public class Joueur {
 	 * @return true si le joueur courant a perdu
 	 */
 	public boolean aPerdu() {
-		boolean tmp = false;
-		int i = 0;
-		while (i < liste_bateau.size()) {
-			if (liste_bateau.get(i).etreCoule() == true) {
-				tmp = true;
-			} else {				
-				tmp = false;
-				return tmp;
-			}
-			i++;
-		}
-		return tmp;
+		 List<Bateau> bats = getListe_bateau();
+		 for (Bateau b: bats) {
+			 if (!b.etreCoule()) return false;
+		 }
+		 return true;
 	}
-
 }

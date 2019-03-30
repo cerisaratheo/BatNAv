@@ -1,10 +1,12 @@
 package projet_bataille_navale;
 
+import java.io.Serializable;
+
 /**
  * Classe representant la grille de jeu.
  * 
  */
-public class Grille {
+public class Grille implements Serializable {
 
 	public final static int HORIZONTAL = 1;
 	public final static int VERTICAL= 2;
@@ -115,6 +117,7 @@ public class Grille {
 				System.out.print('|');
 			}
 		}
+		System.out.print("\n");
 	}
 
 	/**

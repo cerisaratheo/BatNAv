@@ -35,22 +35,26 @@ public class Sauvegarde {
 			System.out.println("erreur hors E/S");
 			e.printStackTrace();
 		}
+		System.out.println("fichier sauvegarde dans "+(new File(nomFichier)).getAbsolutePath());
 	}
 
 	/**
 	 * Methode permettant de charger un objet
 	 */
-	public void charge() {
+	public Joueur charge() {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomFichier));
 			joueur = (Joueur)(ois.readObject());
 			ois.close();
+			return joueur;
 		} catch (IOException e) {
 			System.out.println("erreur d'E/S");
 			e.printStackTrace();
+			return null;
 		} catch (Exception e) {
 			System.out.println("erreur hors E/S");
 			e.printStackTrace();
+			return null;
 		}
 	}
 }

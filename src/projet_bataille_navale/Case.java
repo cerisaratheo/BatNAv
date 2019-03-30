@@ -1,10 +1,12 @@
 package projet_bataille_navale;
 
+import java.io.Serializable;
+
 /**
  * Class representant une case de la grille de jeu.
  *
  */
-public class Case {
+public class Case implements Serializable {
 
 	private int x, y;
 	private boolean touchee, occupee;
@@ -89,12 +91,9 @@ public class Case {
 	 */
 	@Override
 	public String toString() {
-		if (this.etreTouchee() == true){
-			return " O ";
-		}
-		if (this.etreOccupee() == true) {
-			return " X ";
-		}
+		if (etreOccupee() && etreTouchee()) return " # ";
+		if (this.etreOccupee()) return " X ";
+		if (this.etreTouchee()) return " o ";
 		return " . ";
 	}
 }
