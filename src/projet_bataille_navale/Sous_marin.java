@@ -5,7 +5,7 @@ package projet_bataille_navale;
  *
  */
 public class Sous_marin extends Bateau {
-	
+
 	private final static int taille = 3;
 	private final static String nom = "sous marin";
 
@@ -23,7 +23,7 @@ public class Sous_marin extends Bateau {
 	public int getTaille() {
 		return taille;
 	}
-	
+
 	/**
 	 * @return le nom du bateau
 	 */

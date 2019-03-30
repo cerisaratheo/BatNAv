@@ -6,14 +6,14 @@ import java.util.Random;
 public class ConsoleAuto implements GUI {
 
 	private Random rd = new Random();
-	
+
 	@Override
 	public void jouer(Grille g, Joueur j) {
 		// test de la sauvegarde et du load
 		Sauvegarde sauveur = new Sauvegarde(j, "jeu.sauve");
 		sauveur.sauve();
 		j = sauveur.charge();
-		
+
 		Grille gtirs = new Grille(g.getTailleX(), g.getTailleY());
 		//Iteration de jeu
 		while (!j.aPerdu()) {

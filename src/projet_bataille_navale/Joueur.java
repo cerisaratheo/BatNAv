@@ -38,7 +38,7 @@ public class Joueur implements Serializable {
 	public List<Bateau> getListe_bateau() {
 		return liste_bateau;
 	}
-	
+
 	/**
 	 * Methode qui affiche la liste des bateaux d'un joueur
 	 */
@@ -47,7 +47,7 @@ public class Joueur implements Serializable {
 			System.out.println(this.liste_bateau.get(i).toString());
 		}
 	}
-	
+
 	/**
 	 * Methode qui affiche la liste des bateaux d'un joueur
 	 */
@@ -120,16 +120,16 @@ public class Joueur implements Serializable {
 		}
 		return subirTir(p_position, caseDeTir);
 	}
-	
+
 	/**
 	 * Methode permettant de savoir si le joueur courant a perdu
 	 * @return true si le joueur courant a perdu
 	 */
 	public boolean aPerdu() {
-		 List<Bateau> bats = getListe_bateau();
-		 for (Bateau b: bats) {
-			 if (!b.etreCoule()) return false;
-		 }
-		 return true;
+		List<Bateau> bats = getListe_bateau();
+		for (Bateau b: bats) {
+			if (!b.etreCoule()) return false;
+		}
+		return true;
 	}
 }

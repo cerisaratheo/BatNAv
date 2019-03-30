@@ -5,7 +5,7 @@ package projet_bataille_navale;
  *
  */
 public class Contre_torpilleur extends Bateau {
-	
+
 	private final static int taille = 3;
 	private final static String nom = "contre torpilleur";
 
@@ -23,7 +23,7 @@ public class Contre_torpilleur extends Bateau {
 	public int getTaille() {
 		return taille;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

@@ -10,7 +10,7 @@ public class Bateau implements Serializable {
 
 	private int longueur, orientation, pv;
 	private String nom;
-	
+
 	/**
 	 * Constructeur d'un bateau
 	 * @param p_longueur longueur du bateau
@@ -22,7 +22,7 @@ public class Bateau implements Serializable {
 		this.orientation = p_orientation;
 		this.nom = p_nom;
 	}
-	
+
 	/**
 	 * Methode permettant de savoir si un bateau est mort ou non
 	 * @return true si le bateau est mort
@@ -30,7 +30,7 @@ public class Bateau implements Serializable {
 	public boolean etreCoule() {
 		return this.pv<=0;
 	}
-	
+
 	/**
 	 * @return le nom du bateau
 	 */
@@ -51,7 +51,7 @@ public class Bateau implements Serializable {
 	public int getOrientation() {
 		return orientation;
 	}
-	
+
 	/**
 	 * @param orientation the orientation to set
 	 */

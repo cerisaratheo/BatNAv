@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Console implements GUI {
+
 	private Scanner sc = new Scanner(System.in);
 
 	@Override
@@ -23,7 +24,7 @@ public class Console implements GUI {
 				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
 				System.out.println("Voici VOTRE grille : ");
 				gtirs.afficherGrille();
-				
+
 				//attaque joueur 1
 				System.out.println("\nJoueur 1. Effectuez un tir : entrer les coordonnees de la case visee : ");
 				System.out.println("\nEntrer position x : ");
@@ -42,9 +43,14 @@ public class Console implements GUI {
 				System.out.println("Afficher votre liste de bateau ? (1: tri par taille; 2: tri par % impact; 3: rien)");
 				continuer = sc.next();
 				switch(continuer) {
-				case "1": j.afficherListe_bateauParTaille(); break;
-				case "2": j.afficherListe_bateauParImpact(); break;
-				default: break;
+				case "1": 
+					j.afficherListe_bateauParTaille(); 
+					break;
+				case "2": 
+					j.afficherListe_bateauParImpact(); 
+					break;
+				default: 
+					break;
 				}
 				if (continuer.equals("oui")) {
 					j.afficherListe_bateau();
@@ -54,7 +60,7 @@ public class Console implements GUI {
 				if (continuer.equals("non")) {
 					break;
 				}
-				
+
 			} catch (ExceptionCaseImpactee e) {
 				System.out.println("La case specifiee a deja ete touchee par un tir, vous passez votre tour.");
 			} catch (ExceptionHorsDuTableau e) {
@@ -82,9 +88,13 @@ public class Console implements GUI {
 				int y = sc.nextInt();
 				System.out.println("Entrer orientation du bateau : ("+Grille.HORIZONTAL+" = horizontal, "+Grille.VERTICAL+" = vertical)");
 				int orientation = sc.nextInt();
-				if (orientation == Grille.HORIZONTAL) j.getListe_bateau().get(i).setOrientation(Grille.HORIZONTAL);
+				if (orientation == Grille.HORIZONTAL) {
+					j.getListe_bateau().get(i).setOrientation(Grille.HORIZONTAL);
+				}
 				else {
-					if (orientation == Grille.VERTICAL) j.getListe_bateau().get(i).setOrientation(Grille.VERTICAL);
+					if (orientation == Grille.VERTICAL) {
+						j.getListe_bateau().get(i).setOrientation(Grille.VERTICAL);
+					}
 					else {
 						System.out.println("Mauvaise orientation, recommencez.");
 						--i;

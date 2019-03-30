@@ -42,7 +42,7 @@ public class Grille implements Serializable {
 	public int getTailleX() {
 		return taille_x;
 	}
-	
+
 	public int getTailleY() {
 		return taille_y;
 	}
@@ -63,9 +63,12 @@ public class Grille implements Serializable {
 			// on verifie dans une premiere boucle que toutes les cases sont OK
 			for (int i = 0; i < longueur; i++) {
 				Case e = grille[p_case.getX()][p_case.getY()+i];
-				if (e.etreOccupee() == true) throw new ExceptionGrille();
-				if (e.getX() >= this.taille_x || e.getX() < 0 || e.getY() >= this.taille_y || e.getY() < 0)
+				if (e.etreOccupee() == true) {
+					throw new ExceptionGrille();
+				}
+				if (e.getX() >= this.taille_x || e.getX() < 0 || e.getY() >= this.taille_y || e.getY() < 0) {
 					throw new ExceptionHorsDuTableau();
+				}
 			}
 			// tout est bon, on peut poser
 			for (int i = 0; i < longueur; i++) {
@@ -74,14 +77,18 @@ public class Grille implements Serializable {
 			return true;
 		} else if (p_bateau.getOrientation() == VERTICAL) {
 			// vertical
-			if (p_case.getX()+longueur>=this.taille_x) 
+			if (p_case.getX()+longueur>=this.taille_x) {
 				throw new ExceptionHorsDuTableau();
+			}
 			// on verifie dans une premiere boucle que toutes les cases sont OK
 			for (int i = 0; i < longueur; i++) {
 				Case e = grille[p_case.getX()+i][p_case.getY()];
-				if (e.etreOccupee() == true) throw new ExceptionGrille();
-				if (e.getX() >= this.taille_x || e.getX() < 0 || e.getY() >= this.taille_y || e.getY() < 0)
+				if (e.etreOccupee() == true) {
+					throw new ExceptionGrille();
+				}
+				if (e.getX() >= this.taille_x || e.getX() < 0 || e.getY() >= this.taille_y || e.getY() < 0) {
 					throw new ExceptionHorsDuTableau();
+				}
 			}
 			// tout est bon, on peut poser
 			for (int i = 0; i < longueur; i++) {
@@ -102,18 +109,26 @@ public class Grille implements Serializable {
 
 		// longueur maximale du nb X
 		int maxX = Integer.toString(taille_x).length();
-		
+
 		System.out.print("\n||");
-		for (int i=0;i<maxX+2;i++) System.out.print("|");
-		for (int j = 1; j <= taille_y; j++) System.out.print("| " + j + " |");
+		for (int i=0;i<maxX+2;i++) {
+			System.out.print("|");
+		}
+		for (int j = 1; j <= taille_y; j++) {
+			System.out.print("| " + j + " |");
+		}
 
 		for (int i = 1; i <= taille_x; i++) {
 			System.out.print("\n| " + i);
-			for (int k = 0; k<maxX-Integer.toString(i).length(); k++) System.out.print(" ");
+			for (int k = 0; k<maxX-Integer.toString(i).length(); k++) {
+				System.out.print(" ");
+			}
 			System.out.print(" |");
 			for (int j = 1; j <= taille_y; j++) {
 				System.out.print('|'+grille[i-1][j-1].toString());
-				for (int k=0;k<Integer.toString(j).length()-1;k++) System.out.print(" ");
+				for (int k=0;k<Integer.toString(j).length()-1;k++) {
+					System.out.print(" ");
+				}
 				System.out.print('|');
 			}
 		}

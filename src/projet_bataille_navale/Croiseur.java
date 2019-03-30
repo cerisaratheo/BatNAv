@@ -5,7 +5,7 @@ package projet_bataille_navale;
  *
  */
 public class Croiseur extends Bateau {
-	
+
 	private static final int taille = 4;
 	private final static String nom = "croiseur";
 

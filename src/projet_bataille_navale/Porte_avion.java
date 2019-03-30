@@ -5,7 +5,7 @@ package projet_bataille_navale;
  *
  */
 public class Porte_avion extends Bateau {
-	
+
 	private final static int taille = 5;
 	private final static String nom = "porte avion";
 
