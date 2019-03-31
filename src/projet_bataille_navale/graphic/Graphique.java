@@ -33,20 +33,10 @@ public class Graphique extends JPanel implements GUI {
 	private Joueur joueur;
 	private JTextField userinput = new JTextField(80);
 
-	public Graphique() {
-		super();
-
-		this.joueur=new Joueur("personne", new Grille(10, 8), new ArrayList<Bateau>());
-		try {
-			this.joueur.getGrille().positionnerBateau(new Croiseur(1), joueur.getGrille().getCase(2, 1));
-			System.out.println("hhhh "+joueur.getGrille().getCase(2, 1));
-		} catch (ExceptionHorsDuTableau e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ExceptionGrille e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public void setJoueur(Joueur j) {
+		this.joueur=j;
+		
+		removeAll();
 		setLayout(new BorderLayout());
 
 		zoneText = new JPanel(new FlowLayout());
@@ -116,7 +106,14 @@ public class Graphique extends JPanel implements GUI {
 				repaint();
 			}
 		});
+		validate();
+	}
+	
+	public Graphique() {
+		super();
 
+		Joueur j=new Joueur("personne", new Grille(10, 8), new ArrayList<Bateau>());
+		setJoueur(j);		
 	}
 
 	@Override

@@ -105,7 +105,10 @@ public class Joueur implements Serializable {
 				p_position.devenirTouchee();
 			}
 			return true;
-		} else return false;
+		} else {
+			p_position.devenirTouchee();
+			return false;
+		}
 	}
 
 	/**

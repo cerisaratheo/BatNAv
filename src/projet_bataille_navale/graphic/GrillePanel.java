@@ -28,12 +28,11 @@ public class GrillePanel extends JPanel {
 		int w = getWidth();
 		int h = getHeight();
 		int xsc = h/g.getTailleX();
-		System.out.println("xxx "+xsc+" "+h+" "+g.getTailleX());
 		int y = xsc*cx;
-		int y2 = y+xsc;
+		int y2 = xsc;
 		int ysc = w/g.getTailleY();
 		int x = ysc*cy;
-		int x2 = x+ysc;
+		int x2 = ysc;
 		int[] res = {x,y,x2,y2}; 
 		return res;
 	}
@@ -43,7 +42,6 @@ public class GrillePanel extends JPanel {
 		int w = getWidth();
 		int h = getHeight();
 		gr.setColor(Color.LIGHT_GRAY);
-		System.out.println("comp "+w+" "+h);
 		gr.fillRect(0, 0, w, h);
 		gr.setColor(Color.black);
 
@@ -61,16 +59,19 @@ public class GrillePanel extends JPanel {
 		}
 
 		// affichage des bateaux
-		gr.setColor(Color.blue);
 		for (int x=0;x<g.getTailleX();x++) {
 			for (int y=0;y<g.getTailleY();y++) {
 				try {
 					Case c = g.getCase(x, y);
+					int[] xy = getXY(x, y);
 					if (c.etreOccupee()) {
-						int[] xy = getXY(x, y);
-						System.out.println("fill "+xy[0]+" "+xy[1]+" "+xy[2]+" "+xy[3]);
-						gr.fillRect(xy[0], xy[1], xy[2], xy[3]);
-						break;
+						gr.setColor(Color.BLACK);
+						gr.fillRoundRect(xy[0]+1, xy[1]+1, xy[2]-2, xy[3]-2,5,5);
+					}
+					if (c.etreTouchee()) {
+						gr.setColor(Color.RED);
+						gr.drawLine(xy[0]+1, xy[1]+1, xy[0]+1+xy[2]-2, xy[1]+1+xy[3]-2);
+						gr.drawLine(xy[0]+1, xy[1]+1+xy[3]-2, xy[0]+1+xy[2]-2, xy[1]+1);
 					}
 				} catch (ExceptionHorsDuTableau e) {
 
