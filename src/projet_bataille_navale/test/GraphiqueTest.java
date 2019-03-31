@@ -32,11 +32,16 @@ public class GraphiqueTest extends Graphique {
 	public void jouer(Grille g, Joueur j) {
 		Grille gtirs = new Grille(g.getTailleX(), g.getTailleY());
 		//Iteration de jeu
-		while (!j.aPerdu()) {
+		// pour arreter quand le jeu est fini:
+		// while (!j.aPerdu()) {
+		// pour arreter quand on a tire sur le tiers du plateau:
+		int i;
+		for (i=0;i<g.getTailleX()*g.getTailleY()/3;i++) {
 			try {
 				//attaque joueur 1
-				int x = rd.nextInt(100)-1;
-				int y = rd.nextInt(100)-1;
+				int x = rd.nextInt(g.getTailleX())-1;
+				int y = rd.nextInt(g.getTailleY())-1;
+				System.out.println("tir "+x+" "+y);
 				boolean touche = j.lancerTir(j.getGrille().getCase(x, y), gtirs.getCase(x, y));
 				if (touche) {
 					System.out.println("coup: "+x+" "+y+" touche: "+touche);
@@ -48,9 +53,7 @@ public class GraphiqueTest extends Graphique {
 			}
 			this.repaint();
 		}
-		j.afficherListe_bateau();
-
-		System.out.println("Arret de jeu.");
+		System.out.println("Arret de jeu. "+i);
 	}
 
 	@Override
@@ -106,9 +109,10 @@ public class GraphiqueTest extends Graphique {
 
 		GraphiqueTest gui = new GraphiqueTest();
 
-		jf.setContentPane(gui);
 		jfw=800; jfh=500;
 		jf.setSize(jfw, jfh);
+		jf.setContentPane(gui);
+		//jf.pack();
 		jf.setVisible(true);
 
 		//Remplissage liste de bateau type.

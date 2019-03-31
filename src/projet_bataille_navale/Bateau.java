@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Class bateau representant un bateau.
  *
  */
-public class Bateau implements Serializable {
+public abstract class Bateau implements Serializable {
 
 	private int longueur, orientation, pv;
 	private String nom;
@@ -71,7 +71,10 @@ public class Bateau implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return ("Bateau de type : " + this.getNom() + ", de taille : " + this.getLongueur() + " dispose de : " + this.getPv() + " pv.");
+		return (this.getNom() + " de taille : " + this.getLongueur() + " dispose de : " + this.getPv() + " pv.");
+	}
+	public String toShortString() {
+		return  (this.getNom() + " " + this.getLongueur()+" cases "+this.getPv() + " pv.");
 	}
 
 	/**

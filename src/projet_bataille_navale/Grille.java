@@ -58,7 +58,7 @@ public class Grille implements Serializable {
 		int longueur = p_bateau.getLongueur();
 		if (p_bateau.getOrientation() == HORIZONTAL) {
 			// horizontal
-			if (p_case.getY()+longueur>=this.taille_y) 
+			if (p_case.getY()+longueur>this.taille_y) 
 				throw new ExceptionHorsDuTableau();
 			// on verifie dans une premiere boucle que toutes les cases sont OK
 			for (int i = 0; i < longueur; i++) {
@@ -72,7 +72,11 @@ public class Grille implements Serializable {
 			}
 			// tout est bon, on peut poser
 			for (int i = 0; i < longueur; i++) {
-				grille[p_case.getX()][p_case.getY()+i].devenirOccupee(p_bateau);
+				System.out.println("tralala");
+				Case c = grille[p_case.getX()][p_case.getY()+i];
+				System.out.println("pcase "+p_case.getX()+" "+p_case.getY());
+				System.out.println("c "+c.getX()+" "+c.getY());
+				c.devenirOccupee(p_bateau);
 			}
 			return true;
 		} else if (p_bateau.getOrientation() == VERTICAL) {

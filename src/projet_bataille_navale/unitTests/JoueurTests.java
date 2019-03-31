@@ -8,8 +8,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import projet_bataille_navale.Bateau;
+import projet_bataille_navale.Contre_torpilleur;
+import projet_bataille_navale.Croiseur;
 import projet_bataille_navale.Grille;
 import projet_bataille_navale.Joueur;
+import projet_bataille_navale.Porte_avion;
+import projet_bataille_navale.Torpilleur;
 
 class JoueurTests {
 
@@ -17,7 +21,7 @@ class JoueurTests {
 	void testJoueur() {
 		Grille g = new Grille(1567, 234);
 		ArrayList<Bateau> l = new ArrayList<Bateau>();
-		l.add(new Bateau("pedalo", 1, 1));
+		l.add(new Torpilleur(0));
 		Joueur j = new Joueur("toto", g, l);
 		assert j!=null;
 	}
@@ -26,7 +30,7 @@ class JoueurTests {
 	void testGetNom() {
 		Grille g = new Grille(1567, 234);
 		ArrayList<Bateau> l = new ArrayList<Bateau>();
-		l.add(new Bateau("pedalo", 1, 1));
+		l.add(new Porte_avion(0));
 		Joueur j = new Joueur("toto", g, l);
 		assert j.getNom().equals("toto");
 	}
@@ -35,8 +39,8 @@ class JoueurTests {
 	void testGetListe_bateau() {
 		Grille g = new Grille(1567, 234);
 		ArrayList<Bateau> l = new ArrayList<Bateau>();
-		Bateau b1 = new Bateau("pedalo", 1, 1);
-		Bateau b2 = new Bateau("entreprise", 16, 2);
+		Bateau b1 = new Contre_torpilleur(0);
+		Bateau b2 = new Croiseur(0);
 		l.add(b1);
 		l.add(b2);
 		Joueur j = new Joueur("toto", g, l);

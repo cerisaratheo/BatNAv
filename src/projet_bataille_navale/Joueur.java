@@ -55,8 +55,8 @@ public class Joueur implements Serializable {
 		liste_bateau.sort(new Comparator<Bateau>() {
 			@Override
 			public int compare(Bateau o1, Bateau o2) {
-				if (o1.getLongueur()<o2.getLongueur()) return -1;
-				if (o1.getLongueur()>o2.getLongueur()) return 1;
+				if (o1.getLongueur()<o2.getLongueur()) return 1;
+				if (o1.getLongueur()>o2.getLongueur()) return -1;
 				return 0;
 			}
 		});
