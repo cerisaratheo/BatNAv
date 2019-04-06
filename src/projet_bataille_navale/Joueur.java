@@ -10,7 +10,7 @@ import java.util.*;
 public class Joueur implements Serializable {
 
 	private String nom;
-	private ArrayList<Bateau> liste_bateau;
+	private List<Bateau> liste_bateau;
 	private Grille grille;
 
 	/**
@@ -19,7 +19,7 @@ public class Joueur implements Serializable {
 	 * @param p_grille grille du joueur
 	 * @param p_liste_bateau liste de bateau du joueur
 	 */
-	public Joueur(String p_nom, Grille p_grille, ArrayList<Bateau> p_liste_bateau) {
+	public Joueur(String p_nom, Grille p_grille, List<Bateau> p_liste_bateau) {
 		this.nom = p_nom;
 		this.liste_bateau = p_liste_bateau;
 		this.grille = p_grille;
@@ -95,7 +95,6 @@ public class Joueur implements Serializable {
 	 * @param caseDeTir case pour afficher les tirs
 	 */
 	public boolean subirTir(Case p_position, Case caseDeTir) {
-		caseDeTir.devenirTouchee();
 		if (p_position.etreOccupee() == true) {
 			Bateau bateau = p_position.occupePar();
 			// on ajoute artificiellement un bout de bateau dans la grille des tirs lorsqu'il y avait un bateau a cet endroit, ce qui permet d'afficher differemment un tir avec et sans bateau
@@ -104,6 +103,7 @@ public class Joueur implements Serializable {
 				bateau.moinsUnPv();
 				p_position.devenirTouchee();
 			}
+			caseDeTir.devenirTouchee();
 			return true;
 		} else {
 			p_position.devenirTouchee();

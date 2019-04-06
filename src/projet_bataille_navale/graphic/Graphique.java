@@ -1,6 +1,7 @@
 package projet_bataille_navale.graphic;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -50,6 +51,9 @@ public class Graphique extends JPanel implements GUI {
 	// cette grille n'est utilisee que pour l'affiche graphique, pas pour l'affichage console
 	// elle sert a n'afficher que les cases attaquees, et pas les bateaux qui sont sur la Grille dans joueur et doivent etre caches
 	private Grille grilleDattaque=null;
+	
+	// utilises seulement pendant la phase d'intitialisation
+	private Joueur initjr=null;
 
 	public void afficheMessage(String s) {
 		txt.setText(s);
@@ -76,7 +80,9 @@ public class Graphique extends JPanel implements GUI {
 		nom.setBorder(LineBorder.createBlackLineBorder());
 		zoneText.add(nom, BorderLayout.WEST);
 		zoneText.add(userinput, BorderLayout.CENTER);
-		txt = new JLabel("Posez vos bateaux");
+		txt = new JLabel("Posez vos bateaux                ");
+		txt.setBackground(Color.green);
+		txt.setOpaque(true);
 		zoneText.add(txt, BorderLayout.EAST);
 
 		middle = new JPanel(new BorderLayout(10,5));
@@ -279,7 +285,36 @@ public class Graphique extends JPanel implements GUI {
 	public Object[] initJeu() {
 		// dans cette phase de pose des bateaux, on ne doit pas avoir de grille de tirs
 		grilleDattaque=null;
-		return null;
+		int taille_grille_x = 10;
+		int taille_grille_y = 10;
+		String nom1 = "joueur1";
+		Object[] infos = {taille_grille_x,taille_grille_y,nom1};
+		
+		afficheMessage("Tailles X et Y du plateau ?");
+		userinput.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String s = userinput.getText();
+				String[] st = s.split(" ");
+				if (st.length==2) {
+					try {
+						int x = Integer.parseInt(st[0]);
+						int y = Integer.parseInt(st[1]);
+						Grille grille_1 = new Grille(x,y);
+						Joueur joueur_1 = new Joueur(initjr.getNom(), grille_1, initjr.getListe_bateau());
+						initjr = joueur_1;
+						
+						// 2eme phase: poser les bateaux
+						afficheMessage("Vous pouvez positionner les bateaux");
+						positionnerBateau(grille_1, joueur_1);
+					} catch (Exception e1) {
+						afficheMessage("Tailles X et Y du plateau ? (Entrez 2 entiers séparés par un espace !)");
+					}
+				}
+			}
+		});
+
+		return infos;
 	}
 
 	public static void main(String[] args) {
@@ -299,12 +334,10 @@ public class Graphique extends JPanel implements GUI {
 		liste_bateau.add(new Sous_marin(Grille.HORIZONTAL));
 		liste_bateau.add(new Torpilleur(Grille.HORIZONTAL));
 
-		GraphiqueTest gui = new GraphiqueTest();
-		Object[] infos = gui.initJeu();
+		Object[] infos = g.initJeu();
 		Grille grille_1 = new Grille((int)infos[0], (int)infos[1]);
 		Joueur joueur_1 = new Joueur((String)infos[2], grille_1, liste_bateau);
 
-		g.positionnerBateau(grille_1, joueur_1);
-
+		g.initjr = joueur_1;
 	}
 }

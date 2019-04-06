@@ -32,15 +32,15 @@ public class GraphiqueTest extends Graphique {
 	public void jouer(Grille g, Joueur j) {
 		Grille gtirs = new Grille(g.getTailleX(), g.getTailleY());
 		//Iteration de jeu
-		// pour arreter quand le jeu est fini:
-		// while (!j.aPerdu()) {
-		// pour arreter quand on a tire sur le tiers du plateau:
 		int i;
-		for (i=0;i<g.getTailleX()*g.getTailleY()/3;i++) {
+		// pour arreter quand on a tire sur le tiers du plateau:
+		// for (i=0;i<g.getTailleX()*g.getTailleY()/3;i++) {
+		// pour arreter quand le jeu est fini:
+		for (i=0;!j.aPerdu();i++) {
 			try {
 				//attaque joueur 1
-				int x = rd.nextInt(g.getTailleX())-1;
-				int y = rd.nextInt(g.getTailleY())-1;
+				int x = rd.nextInt(g.getTailleX());
+				int y = rd.nextInt(g.getTailleY());
 				System.out.println("tir "+x+" "+y);
 				boolean touche = j.lancerTir(j.getGrille().getCase(x, y), gtirs.getCase(x, y));
 				if (touche) {

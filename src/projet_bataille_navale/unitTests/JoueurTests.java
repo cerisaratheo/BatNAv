@@ -118,8 +118,8 @@ class JoueurTests {
 		} catch (ExceptionHorsDuTableau e) {
 			e.printStackTrace();
 		}
-		j.subirTir(c1, c1);
-		assertEquals("b1 devrait avoir 2 pv", b1.getPv());
+		assertEquals(true, j.subirTir(c1, c1));
+		assertEquals("b1 devrait avoir 2 pv", 2, b1.getPv());
 	}
 
 	@Test

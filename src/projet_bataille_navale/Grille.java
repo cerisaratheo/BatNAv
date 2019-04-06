@@ -30,13 +30,6 @@ public class Grille implements Serializable {
 	}
 
 	/**
-	 * @return la grille
-	 */
-	public Case[][] getGrille() {
-		return grille;
-	}
-
-	/**
 	 * @return the taille
 	 */
 	public int getTailleX() {
@@ -93,7 +86,7 @@ public class Grille implements Serializable {
 			return true;
 		} else if (p_bateau.getOrientation() == VERTICAL) {
 			// vertical
-			if (p_case.getX()+longueur>=this.taille_x) {
+			if (p_case.getX()+longueur>this.taille_x) {
 				throw new ExceptionHorsDuTableau();
 			}
 			// on verifie que toutes les cases sont OK
