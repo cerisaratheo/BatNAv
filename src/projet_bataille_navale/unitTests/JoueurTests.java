@@ -118,7 +118,7 @@ class JoueurTests {
 		} catch (ExceptionHorsDuTableau e) {
 			e.printStackTrace();
 		}
-		assertEquals(true, j.subirTir(c1, c1));
+		assertEquals("le bateau doit avoir subi un tir" ,true, j.subirTir(c1, c1));
 		assertEquals("b1 devrait avoir 2 pv", 2, b1.getPv());
 	}
 

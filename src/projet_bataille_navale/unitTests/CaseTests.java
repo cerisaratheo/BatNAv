@@ -16,8 +16,8 @@ class CaseTests {
 	void testCase() {
 		Case c = new Case(1, 2);
 		assert c!=null;
-		assertEquals(1,c.getX());
-		assertEquals(2,c.getY());
+		assertEquals("x doit etre egal a 1", 1, c.getX());
+		assertEquals("y doit etre egal a 2", 2, c.getY());
 	}
 
 	@Test

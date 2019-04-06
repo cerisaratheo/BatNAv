@@ -22,8 +22,8 @@ class GrilleTests {
 	void testGrille() {
 		Grille g = new Grille(19, 20);
 		assert g!=null;
-		assertEquals(19, g.getTailleX());
-		assertEquals(20, g.getTailleY());
+		assertEquals("x doit etre egal a 19", 19, g.getTailleX());
+		assertEquals("y doit etre egal a 20", 20, g.getTailleY());
 
 	}
 
@@ -71,8 +71,8 @@ class GrilleTests {
 		Grille g = new Grille(12, 10);
 		try {
 			Case c = g.getCase(5, 2);
-			assertEquals(5, c.getX());
-			assertEquals(2, c.getY());
+			assertEquals("x doit etre egal a 5", 5, c.getX());
+			assertEquals("y doit etre egal a 2", 2, c.getY());
 		} catch (ExceptionHorsDuTableau e) {
 			e.printStackTrace();
 		}
