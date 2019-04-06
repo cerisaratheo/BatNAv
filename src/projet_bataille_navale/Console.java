@@ -62,7 +62,7 @@ public class Console implements GUI {
 				}
 
 			} catch (ExceptionCaseImpactee e) {
-				System.out.println("La case specifiee a deja ete touchee par un tir, vous passez votre tour.");
+				System.out.println("La case specifiee a deja ete touchee par un tir, vous passez votre tour.");
 			} catch (ExceptionHorsDuTableau e) {
 				System.out.println("La case specifiee se trouve hors de la grille.");
 			}
@@ -105,7 +105,7 @@ public class Console implements GUI {
 				Case position_encrage = j.getGrille().getCase(x-1,y-1);
 				g.positionnerBateau(j.getListe_bateau().get(i), position_encrage);
 			} catch (ExceptionGrille e) {
-				System.out.println("Un bateau se trouve deja a cet endroit. Ou le point d'encrage n'est pas correct.\n");
+				System.out.println("Un bateau se trouve deja a cet endroit. Ou le point d'encrage n'est pas correct.\n");
 				--i;
 			} catch (ExceptionHorsDuTableau e) {
 				System.out.println("Coordonnees specifiees se trouvent hors de la grille.");

@@ -9,6 +9,7 @@ public class Sauvegarde {
 
 	private Joueur joueur;
 	private String nomFichier;
+	public Grille grilleDattaque=null;
 
 	/**
 	 * Constructeur d'une sauvegarde
@@ -24,9 +25,15 @@ public class Sauvegarde {
 	 * Methode permettant de sauvegarder un objet
 	 */
 	public void sauve() {
+		sauve(null);
+	}
+	public void sauve(Grille g) {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nomFichier));
+			if (g==null) oos.writeInt(0); // mode sans grille
+			else oos.writeInt(1); // mode avec grille
 			oos.writeObject(joueur);
+			if (g!=null) oos.writeObject(g);
 			oos.close();
 		} catch (IOException e) {
 			System.out.println("erreur d'E/S");
@@ -44,7 +51,10 @@ public class Sauvegarde {
 	public Joueur charge() {
 		try {
 			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomFichier));
+			int m = ois.readInt();
 			joueur = (Joueur)(ois.readObject());
+			if (m==0) grilleDattaque=null;
+			else grilleDattaque = (Grille)(ois.readObject());
 			ois.close();
 			return joueur;
 		} catch (IOException e) {

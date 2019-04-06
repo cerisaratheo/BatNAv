@@ -47,7 +47,10 @@ public class Graphique extends JPanel implements GUI {
 	// utilise pour l'affichage de la liste des bateaux
 	private DefaultListModel<String> batlist = new DefaultListModel<String>();
 	private List<Bateau> bateauxAposer = new ArrayList<Bateau>();
-	
+	// cette grille n'est utilisee que pour l'affiche graphique, pas pour l'affichage console
+	// elle sert a n'afficher que les cases attaquees, et pas les bateaux qui sont sur la Grille dans joueur et doivent etre caches
+	private Grille grilleDattaque=null;
+
 	public void afficheMessage(String s) {
 		txt.setText(s);
 		validate();
@@ -56,7 +59,7 @@ public class Graphique extends JPanel implements GUI {
 	private void listeBateaux() {
 		batlist.clear();
 		for (Bateau b : joueur.getListe_bateau()) {
-			batlist.addElement(b.toShortString());
+			batlist.addElement(b.toString());
 		}
 		middle.validate();
 	}
@@ -77,7 +80,8 @@ public class Graphique extends JPanel implements GUI {
 		zoneText.add(txt, BorderLayout.EAST);
 
 		middle = new JPanel(new BorderLayout(10,5));
-		grille = new GrillePanel(joueur.getGrille());
+		grille = new GrillePanel();
+		grille.setGrille(j.getGrille());
 		middle.add(grille, BorderLayout.CENTER);
 		JList<String> liste = new JList<String>(batlist);
 		liste.setFixedCellWidth(180);
@@ -100,7 +104,7 @@ public class Graphique extends JPanel implements GUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Sauvegarde s = new Sauvegarde(joueur, "grph.sauv");
-				s.sauve();
+				s.sauve(grilleDattaque);
 			}
 		});
 		load.addActionListener(new ActionListener() {
@@ -109,6 +113,15 @@ public class Graphique extends JPanel implements GUI {
 				Sauvegarde s = new Sauvegarde(joueur, "grph.sauv");
 				joueur=s.charge();
 				grille.setGrille(joueur.getGrille());
+				if (s.grilleDattaque!=null) {
+					// on est dans le mode "jouer"
+					grilleDattaque=s.grilleDattaque;
+					jouer(joueur.getGrille(),joueur);
+				} else {
+					// on est dans le mode "pose des bateaux"
+					grilleDattaque=null;
+					positionnerBateau(joueur.getGrille(), joueur);
+				}
 			}
 		});
 		listeTaille.addActionListener(new ActionListener() {
@@ -139,10 +152,16 @@ public class Graphique extends JPanel implements GUI {
 	@Override
 	public void jouer(Grille g, Joueur j) {
 		Grille grilleBateaux = j.getGrille();
-		Grille grilleDattaque = new Grille(grilleBateaux.getTailleX(),grilleBateaux.getTailleY());
+		if (grilleDattaque==null) grilleDattaque = new Grille(grilleBateaux.getTailleX(),grilleBateaux.getTailleY());
 		grille.setGrille(grilleDattaque);
 		afficheMessage("cliquez sur la case a attaquer");
 		grille.setReaction(new GrilleAction() {
+			@Override
+			public void rotate(Case c) {}
+
+			@Override
+			public void moveSurGrille(Case c) {}
+
 			@Override
 			public void clicSurGrille(Case c) {
 				int x = c.getX();
@@ -171,26 +190,75 @@ public class Graphique extends JPanel implements GUI {
 
 	@Override
 	public void positionnerBateau(Grille g, Joueur j) {
+		// dans cette phase de pose des bateaux, on ne doit pas avoir de grille de tirs
+		grilleDattaque=null;
 		setJoueur(j);
 		bateauxAposer.clear();
 		bateauxAposer.addAll(j.getListe_bateau());
 		{
 			Bateau b = bateauxAposer.get(0);
-			afficheMessage("posez le "+b.toShortString());
+			afficheMessage("posez le "+b.toString());
 		}
 		grille.setReaction(new GrilleAction() {
+			@Override
+			public void rotate(Case c) {
+				Bateau b = bateauxAposer.get(0);
+				if (b!=null && c!=null) {
+					int ori0 = b.getOrientation();
+					if (ori0==Grille.HORIZONTAL) b.setOrientation(Grille.VERTICAL);
+					else b.setOrientation(Grille.HORIZONTAL);
+					try {
+						boolean ok = g.testPositionnerBateau(b, c);
+						if (ok) {
+							moveSurGrille(c);
+						} else {
+							// rotate seulement si c'est possible
+							b.setOrientation(ori0);
+						}
+					} catch (Exception e) {
+						b.setOrientation(ori0);
+					}
+				}
+			}
+
+			@Override
+			public void moveSurGrille(Case c) {
+				grille.clearCasesFantomes();
+				try {
+					Bateau b = bateauxAposer.get(0);
+					if (b!=null && c!=null) {
+						boolean ok = g.testPositionnerBateau(b, c);
+						if (ok) {
+							int longueur = b.getLongueur();
+							if (b.getOrientation() == Grille.HORIZONTAL) {
+								for (int i = 0; i < longueur; i++) {
+									grille.addCasesFantomes(c.getX(),c.getY()+i);
+								}
+							} else if (b.getOrientation() == Grille.VERTICAL) {
+								for (int i = 0; i < longueur; i++) {
+									grille.addCasesFantomes(c.getX()+i,c.getY());
+								}
+							}
+						}
+					}
+				} catch (ExceptionHorsDuTableau e) {
+				} catch (ExceptionGrille e) {
+				}
+				grille.repaint();
+			}
+
 			@Override
 			public void clicSurGrille(Case c) {
 				try {
 					Bateau b = bateauxAposer.get(0);
 					boolean ok = g.positionnerBateau(b, c);
-					System.out.println("clic "+c.getX()+" "+c.getY()+" "+ok+" "+c.etreOccupee());
 					if (ok) {
 						bateauxAposer.remove(0);
 						if (bateauxAposer.size()>0) {
 							b = bateauxAposer.get(0);
-							afficheMessage("posez le "+b.toShortString());
+							afficheMessage("posez le "+b.toString());
 						} else {
+							grille.clearCasesFantomes();
 							grille.setReaction(null);
 							// attaquer directement
 							afficheMessage("");
@@ -209,7 +277,8 @@ public class Graphique extends JPanel implements GUI {
 
 	@Override
 	public Object[] initJeu() {
-		// TODO Auto-generated method stub
+		// dans cette phase de pose des bateaux, on ne doit pas avoir de grille de tirs
+		grilleDattaque=null;
 		return null;
 	}
 

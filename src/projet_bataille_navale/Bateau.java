@@ -71,9 +71,6 @@ public abstract class Bateau implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return (this.getNom() + " de taille : " + this.getLongueur() + " dispose de : " + this.getPv() + " pv.");
-	}
-	public String toShortString() {
 		return  (this.getNom() + " " + this.getLongueur()+" cases "+this.getPv() + " pv.");
 	}
 

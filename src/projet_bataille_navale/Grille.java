@@ -30,7 +30,7 @@ public class Grille implements Serializable {
 	}
 
 	/**
-	 * @return the grille
+	 * @return la grille
 	 */
 	public Case[][] getGrille() {
 		return grille;
@@ -56,11 +56,31 @@ public class Grille implements Serializable {
 	 */
 	public boolean positionnerBateau(Bateau p_bateau, Case p_case) throws ExceptionHorsDuTableau, ExceptionGrille {
 		int longueur = p_bateau.getLongueur();
+		if (testPositionnerBateau(p_bateau, p_case)) {
+			if (p_bateau.getOrientation() == HORIZONTAL) {
+				// tout est bon, on peut poser
+				for (int i = 0; i < longueur; i++) {
+					Case c = grille[p_case.getX()][p_case.getY()+i];
+					c.devenirOccupee(p_bateau);
+				}
+				return true;
+			} else if (p_bateau.getOrientation() == VERTICAL) {
+				// tout est bon, on peut poser
+				for (int i = 0; i < longueur; i++) {
+					grille[p_case.getX()+i][p_case.getY()].devenirOccupee(p_bateau);
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean testPositionnerBateau(Bateau p_bateau, Case p_case) throws ExceptionHorsDuTableau, ExceptionGrille {
+		int longueur = p_bateau.getLongueur();
 		if (p_bateau.getOrientation() == HORIZONTAL) {
 			// horizontal
 			if (p_case.getY()+longueur>this.taille_y) 
 				throw new ExceptionHorsDuTableau();
-			// on verifie dans une premiere boucle que toutes les cases sont OK
+			// on verifie que toutes les cases sont OK
 			for (int i = 0; i < longueur; i++) {
 				Case e = grille[p_case.getX()][p_case.getY()+i];
 				if (e.etreOccupee() == true) {
@@ -70,21 +90,13 @@ public class Grille implements Serializable {
 					throw new ExceptionHorsDuTableau();
 				}
 			}
-			// tout est bon, on peut poser
-			for (int i = 0; i < longueur; i++) {
-				System.out.println("tralala");
-				Case c = grille[p_case.getX()][p_case.getY()+i];
-				System.out.println("pcase "+p_case.getX()+" "+p_case.getY());
-				System.out.println("c "+c.getX()+" "+c.getY());
-				c.devenirOccupee(p_bateau);
-			}
 			return true;
 		} else if (p_bateau.getOrientation() == VERTICAL) {
 			// vertical
 			if (p_case.getX()+longueur>=this.taille_x) {
 				throw new ExceptionHorsDuTableau();
 			}
-			// on verifie dans une premiere boucle que toutes les cases sont OK
+			// on verifie que toutes les cases sont OK
 			for (int i = 0; i < longueur; i++) {
 				Case e = grille[p_case.getX()+i][p_case.getY()];
 				if (e.etreOccupee() == true) {
@@ -94,14 +106,11 @@ public class Grille implements Serializable {
 					throw new ExceptionHorsDuTableau();
 				}
 			}
-			// tout est bon, on peut poser
-			for (int i = 0; i < longueur; i++) {
-				grille[p_case.getX()+i][p_case.getY()].devenirOccupee(p_bateau);
-			}
 			return true;
 		}
 		return false;
 	}
+
 
 
 

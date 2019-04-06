@@ -4,11 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import projet_bataille_navale.Bateau;
 import projet_bataille_navale.Case;
@@ -20,16 +23,34 @@ public class GrillePanel extends JPanel {
 	private Grille g;
 	private HashMap<Bateau, Color> bat2col = new HashMap<Bateau, Color>();
 	private GrilleAction reaction = null;
+	private ArrayList<int[]> casesFantomes = new ArrayList<int[]>();
+
+	public void clearCasesFantomes() {
+		casesFantomes.clear();
+	}
+
+	public void addCasesFantomes(int x, int y) {
+		int[] cc = {x,y};
+		casesFantomes.add(cc);
+	}
 
 	public void setReaction(GrilleAction a) {
 		this.requestFocusInWindow();
 		reaction = a;
 	}
 	
-	public GrillePanel(Grille g) {
+	public GrillePanel() {
 		super();
-		setGrille(g);
-		
+	
+		addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				int sx = e.getX();
+				int sy = e.getY();
+				Case c = getCaseOnClick(sx, sy);
+				if (reaction!=null) reaction.moveSurGrille(c);
+			}
+		});	
 		addMouseListener(new MouseListener() {
 			
 			@Override
@@ -61,7 +82,13 @@ public class GrillePanel extends JPanel {
 				int sx = e.getX();
 				int sy = e.getY();
 				Case c = getCaseOnClick(sx, sy);
-				if (reaction!=null) reaction.clicSurGrille(c);
+				if (c!=null) {
+					if (SwingUtilities.isRightMouseButton(e)) {
+						if (reaction!=null) reaction.rotate(c);
+					} else if (SwingUtilities.isLeftMouseButton(e)) {
+						if (reaction!=null) reaction.clicSurGrille(c);
+					}
+				}
 			}
 		});
 	}
@@ -72,6 +99,7 @@ public class GrillePanel extends JPanel {
 	}
 
 	private Case getCaseOnClick(int x, int y) {
+		if (g==null) return null;
 		int w = getWidth();
 		int h = getHeight();
 		int caseLargeurX = h/g.getTailleX();
@@ -160,6 +188,13 @@ public class GrillePanel extends JPanel {
 
 				}
 			}
+		}
+		// affichage des bateaux fantomes
+		for (int i=0;i<casesFantomes.size();i++) {
+			int[] cc = casesFantomes.get(i);
+			int[] xy = getXY(cc[0],cc[1]);
+			gr.setColor(Color.GRAY);
+			gr.fillRoundRect(xy[0]+1, xy[1]+1, xy[2]-2, xy[3]-2,5,5);
 		}
 	}
 }
