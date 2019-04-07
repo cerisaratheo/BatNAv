@@ -1,0 +1,214 @@
+@startuml
+
+
+class GUI {
+	+void jouer(Grille g, Joueur j)
+	+void positionnerBateau(Grille g, Joueur j)
+	+Object[] initJeu()
+}
+
+class Console {
+	+void jouer(Grille g, Joueur j)
+	+void positionnerBateau(Grille g, Joueur j)
+	+Object[] initJeu()
+}
+
+class ConsoleAuto {
+	+void jouer(Grille g, Joueur j)
+	+void positionnerBateau(Grille g, Joueur j)
+	+Object[] initJeu()
+}
+
+class ExceptionCaseImpactee {
+	+ExeptionCaseImpactee()
+	+ExceptionCaseImpactee(String message)
+}
+
+class ExceptionGrille {
+	+ExceptionGrille()
+	+ExceptionGrille(String message)
+}
+
+class ExceptionHorsDuTableau {
+	+ExceptionHorsDuTableau()
+	+ExceptionHorsDuTableau(String message)
+}
+
+class Bateau {
+	+Bateau(String p_nom, int p_longueur, int p_orientation)
+	+boolean etreCoule()
+	+String getNom()
+	+int getLongueur()
+	+int getOrientation()
+	+void setOrientation(int Orientation)
+	+void moinsUnPv()
+	+string toString()
+	+int getPv()
+}
+
+class PorteAvion {
+	-int taille=5
+	+Porte_avion(int p_orientation)
+	+int getTaille()
+	+String getNom()
+	+String toString()
+}		
+
+class Croiseur {
+	-int taille=4
+	+Croiseur(int p_orientation)
+	+int getTaille()
+	+String getNom()
+	+String toString()
+}
+
+class ContreTorpilleur {
+	-int taille=3
+	Contre_torpilleur(int p_orientation)
+	+int getTaille()
+	+String getNom()
+	+String toString()
+}
+
+class SousMarin {
+	-int taille=3
+	+Sous_marin(int p_orientation)
+	+int getTaille()
+	+String getNom()
+	+String toString()
+}
+
+class Torpilleur {
+	-int taille=2
+	+Torpilleur(int p_orientation)
+	+int getTaille()
+	+String getNom()
+	+String toString()
+}
+
+class Sauvegarde {
+	+Sauvegarde(Joueur p_joueur, String p_nomFichier)
+	+void sauve()
+	+Joueur charge()
+}
+
+class Case {
+	+Case(int p_x, int p_y)
+	+int getX()
+	+int getY()
+	+boolean etreTouchee()
+	+void devenirTouchee()
+	+boolean etreOccupee()
+	+void devenirOccupee(Bateau p_bateau)
+	+Bateau occupePar()
+	+String toString()
+}
+
+class Joueur {
+	+Joueur(String p_nom, Grille p_grille, ArrayList<Bateau> p_liste_bateau)
+	+String getNom()
+	+List<Bateau> getListe_bateau()
+	+void afficherListe_bateau()
+	+void afficherListe_bateauParTaille()
+	+void afficherListe_bateauParImpact()
+	+Grille getGrille()
+	+boolean subirTir(Case p_position, Case caseDeTir)
+	+boolean lancerTir(Case p_position, Case caseDeTir)
+	+boolean aPerdu()
+}
+
+class Grille {
+	+Grille(int p_taille_x, int p_taille_y)
+	+Case[][] getGrille()
+	+int getTailleX()
+	+int getTailleY()
+	+boolean positionnerBateau(Bateau p_bateau, Case p_case)
+	+void afficherGrille()
+	+Case getCase(int p_x, int p_y)
+}
+
+
+GUI <|.. Console
+GUI <|.. ConsoleAuto
+Serializable <|.. Case
+Serializable <|.. Joueur
+Serializable <|.. Grille
+Serializable <|.. Bateau
+
+
+
+Exception <|-- ExceptionCaseImpactee
+Exception <|-- ExceptionGrille
+Exception <|-- ExceptionHorsDuTableau
+
+Bateau  <|-- PorteAvion
+Bateau  <|-- Croiseur
+Bateau  <|-- ContreTorpilleur
+Bateau  <|-- SousMarin
+Bateau  <|-- Torpilleur
+
+class Jeu {
+	+{static}void main(String[] args)
+}
+
+Grille -[hidden]- JPanel
+
+Grille *- Case : Grille
+Jeu - GUI : IHM
+Jeu - Grille : grille_1
+Jeu "0" - "1" Joueur : joueur_1
+Joueur - "1" Grille : grille
+Case "0" - "1"  Bateau : occupeePar
+Sauvegarde - Joueur : joueur
+
+package "graphic" #DDDDDD {
+
+	interface GrilleAction {
+		+void clicSurGrille(Case c)
+	}
+
+	class GrillePanel {
+		+void setReaction(GrilleAction a)
+		+GrillePanel(Grille g)
+		+void setGrille(Grille g)
+		-Case getCaseOnClick(int x, int y)
+		-int[] getXY(int cx, int cy)
+		+void paintComponent(Graphics gr)
+	}
+
+	class Graphique.SourisJeu{
+	}
+
+	class Graphique.SourisPoserBateau {
+	}
+
+	class Graphique {
+		+void afficheMessage(String s)
+		-void listeBateaux()
+		+void setJoueur(Joueur j)
+		+Graphique()
+		+void Jouer(Grille g, Joueur j)
+		+void positionnerBateau(Grille g, Joueur j)
+		+Object[] initJeu()
+		+{static}void main(String[] args)
+	}
+
+	class GraphiqueTest {
+	}
+
+	GUI <|.. Graphique
+	JPanel <|-- Graphique
+	JPanel <|-- GrillePanel
+	GrilleAction <|-- Graphique.SourisJeu
+	GrilleAction <|-- Graphique.SourisPoserBateau
+	Graphique "0" - "1" GrillePanel : grille
+	Graphique "0" - "1" Joueur : joueur
+	GrillePanel "0" - "1" Grille : g
+	GrillePanel "0" - "1" GrilleAction : reaction
+	Graphique +- Graphique.SourisJeu
+	Graphique +- Graphique.SourisPoserBateau
+	Graphique <|-- GraphiqueTest
+}
+
+
+@enduml

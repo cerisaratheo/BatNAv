@@ -1,0 +1,17 @@
+@startuml
+actor Joueur
+Console -> Joueur : print "case x, y ?"
+Joueur -> Console: 5, 2
+Console -> jeu : attaque(5, 2)
+activate jeu
+jeu -> Case52 : attaque(5, 2)
+activate Case52
+Case52 -> Bateau : verifieSiCoule()
+activate Bateau
+Bateau -> Case52 : vrai=isTouche()
+Bateau -> Case53 : vrai=isTouche()
+return coule
+return coule
+return coule
+Console -> Joueur : print "Bateau coulé"
+@enduml

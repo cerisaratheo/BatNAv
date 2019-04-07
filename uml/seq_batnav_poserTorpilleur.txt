@@ -1,0 +1,16 @@
+@startuml
+actor Humain
+Jeu -> Console ** : create
+Jeu -> Torpilleur ** : b = create
+Jeu -> Grille ** : g = create
+Jeu -> Joueur ** : j = create
+Jeu -> Console: positionnerBateau(g,j)
+Console -> Humain : print "torpilleur, X, Y, horizontal/vertical ?"
+Humain -> Console: 5,2,horizontal
+Console -> Torpilleur: setOrientation(horizontal)
+Console -> Grille: c = getCase(5,2)
+Console -> Grille: positionnerBateau(b,c)
+Grille -> Case52: devenirOccupee(b)
+Grille -> Case53: devenirOccupee(b)
+Console -> Grille: afficherGrille()
+@enduml
