@@ -27,6 +27,11 @@ public class Sauvegarde {
 	public void sauve() {
 		sauve(null);
 	}
+
+	/**
+	 * methode permettant de sauvegarder un objet
+	 * @param g grille a sauvegarder
+	 */
 	public void sauve(Grille g) {
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(nomFichier));
@@ -47,6 +52,7 @@ public class Sauvegarde {
 
 	/**
 	 * Methode permettant de charger un objet
+	 * @return joueur avec la partie en cours
 	 */
 	public Joueur charge() {
 		try {

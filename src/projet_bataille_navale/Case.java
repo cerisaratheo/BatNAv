@@ -26,14 +26,14 @@ public class Case implements Serializable {
 	}
 
 	/**
-	 * @return the x
+	 * @return l'abscisse de la case
 	 */
 	public int getX() {
 		return x;
 	}
 
 	/**
-	 * @return the y
+	 * @return l'ordonnee de la case
 	 */
 	public int getY() {
 		return y;

@@ -26,14 +26,14 @@ public class Joueur implements Serializable {
 	}
 
 	/**
-	 * @return the nom
+	 * @return le nom du joueur
 	 */
 	public String getNom() {
 		return nom;
 	}
 
 	/**
-	 * @return the liste_bateau
+	 * @return la liste de bateau du joueur
 	 */
 	public List<Bateau> getListe_bateau() {
 		return liste_bateau;
@@ -91,8 +91,9 @@ public class Joueur implements Serializable {
 
 	/**
 	 * Methode qui permet au bateau courant de subir une attaque
-	 * @param p_position case contenant le bateau sur laquelle subir le tir
+	 * @param p_position case contenant le bateau qui subit le tir
 	 * @param caseDeTir case pour afficher les tirs
+	 * @return un boolean qui vaut true si le tir a bien ete subi
 	 */
 	public boolean subirTir(Case p_position, Case caseDeTir) {
 		if (p_position.etreOccupee() == true) {
@@ -114,7 +115,7 @@ public class Joueur implements Serializable {
 	/**
 	 * Methode permettant a un bateau de lancer un tir
 	 * @param p_position case sur laquelle tirer
-	 * @return booleen indiquant true si l'attaque a bien ete portee
+	 * @return booleen qui vaut true si l'attaque a bien ete portee
 	 * @throws ExceptionCaseImpactee
 	 */
 	public boolean lancerTir(Case p_position, Case caseDeTir) throws ExceptionCaseImpactee {

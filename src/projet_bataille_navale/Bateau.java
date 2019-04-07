@@ -54,17 +54,22 @@ public abstract class Bateau implements Serializable {
 	}
 
 	/**
-	 * @param orientation the orientation to set
+	 * @param orientation orientation du bateau
 	 */
 	public void setOrientation(int orientation) {
 		this.orientation = orientation;
 	}
 
 	/**
-	 * decremente les points de vie du bateau
+	 * decremente les points de vie du bateau si ils sont positifs
 	 */
 	public void moinsUnPv() {
-		this.pv = this.pv-1;
+		if (this.pv > 0) {
+			this.pv = this.pv-1;
+		}
+		else {
+			this.pv = 0;
+		}
 	}
 
 	/* (non-Javadoc)

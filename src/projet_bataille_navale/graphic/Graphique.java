@@ -55,11 +55,18 @@ public class Graphique extends JPanel implements GUI {
 	// utilises seulement pendant la phase d'intitialisation
 	private Joueur initjr=null;
 
+	/**
+	 * methode pour afficher un message destine au joueur
+	 * @param s message a afficher
+	 */
 	public void afficheMessage(String s) {
 		txt.setText(s);
 		validate();
 	}
 	
+	/**
+	 * methode pour remplir la liste des bateaux
+	 */
 	private void listeBateaux() {
 		batlist.clear();
 		for (Bateau b : joueur.getListe_bateau()) {
@@ -68,6 +75,10 @@ public class Graphique extends JPanel implements GUI {
 		middle.validate();
 	}
 	
+	/**
+	* methode pour initialiser le plateau pour un joueur
+	* @param j joueur pour lequel on initialise le plateau
+	*/
 	public void setJoueur(Joueur j) {
 		this.joueur=j;
 		
@@ -147,6 +158,9 @@ public class Graphique extends JPanel implements GUI {
 		validate();
 	}
 	
+	/**
+	 * contructeur de l'interface graphique
+	 */
 	public Graphique() {
 		super();
 
@@ -156,6 +170,11 @@ public class Graphique extends JPanel implements GUI {
 	}
 
 	@Override
+	/**
+	 * methode pour jouer
+	 * @param g grille avec laquelle on joue
+	 * @param j joueur qui joue
+	 */
 	public void jouer(Grille g, Joueur j) {
 		Grille grilleBateaux = j.getGrille();
 		if (grilleDattaque==null) grilleDattaque = new Grille(grilleBateaux.getTailleX(),grilleBateaux.getTailleY());
@@ -195,6 +214,11 @@ public class Graphique extends JPanel implements GUI {
 	}
 
 	@Override
+	/**
+	 * methode pour positionner un bateau sur la grille
+	 * @param g grille sur laquelle on veut positionner le bateau
+	 * @param j joueur qui positionne le bateau
+	 */
 	public void positionnerBateau(Grille g, Joueur j) {
 		// dans cette phase de pose des bateaux, on ne doit pas avoir de grille de tirs
 		grilleDattaque=null;
@@ -207,6 +231,10 @@ public class Graphique extends JPanel implements GUI {
 		}
 		grille.setReaction(new GrilleAction() {
 			@Override
+			/**
+			 * methode pour changer l'orientation du bateau en cours de pose
+			 * @param c case sur laquelle se trouve la souris
+			 */
 			public void rotate(Case c) {
 				Bateau b = bateauxAposer.get(0);
 				if (b!=null && c!=null) {
@@ -228,6 +256,10 @@ public class Graphique extends JPanel implements GUI {
 			}
 
 			@Override
+			/**
+			 * methode pour afficher le bateau en transparence sur la grille avant de le poser
+			 * @param c case sur laquelle se trouve la souris
+			 */
 			public void moveSurGrille(Case c) {
 				grille.clearCasesFantomes();
 				try {
@@ -254,6 +286,10 @@ public class Graphique extends JPanel implements GUI {
 			}
 
 			@Override
+			/**
+			 * methode pour poser le bateau une fois qu'on a cliqué
+			 * @param c case sur laquelle se trouve la souris
+			 */
 			public void clicSurGrille(Case c) {
 				try {
 					Bateau b = bateauxAposer.get(0);
@@ -282,6 +318,10 @@ public class Graphique extends JPanel implements GUI {
 	}
 
 	@Override
+	/**
+	 * methode pour donner au jeu les informations necessaires (nom du joueur, taille de la grille)
+	 * @return un tableau d'objet qui contient les informations du jeu (nom du joueur, taille de la grille)
+	 */
 	public Object[] initJeu() {
 		// dans cette phase de pose des bateaux, on ne doit pas avoir de grille de tirs
 		grilleDattaque=null;
@@ -317,6 +357,9 @@ public class Graphique extends JPanel implements GUI {
 		return infos;
 	}
 
+	/**
+	 * metode pour afficher la fenetre graphique
+	 */
 	public static void jeuGraphique() {
 		JFrame jf = new JFrame("Bataille navale");
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

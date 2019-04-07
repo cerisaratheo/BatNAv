@@ -22,6 +22,9 @@ import projet_bataille_navale.Torpilleur;
 
 class JoueurTests {
 
+	/**
+	 * test constructeur
+	 */
 	@Test
 	void testJoueur() {
 		Grille g = new Grille(1567, 234);
@@ -32,6 +35,9 @@ class JoueurTests {
 		assertEquals("le joueur ne devrait pas etre nul", "toto", j.getNom());
 	}
 
+	/**
+	 * On teste si le nom retourne est bien le bon
+	 */
 	@Test
 	void testGetNom() {
 		Grille g = new Grille(1567, 234);
@@ -41,6 +47,9 @@ class JoueurTests {
 		assertEquals("le joueur doit s'appeler toto", "toto", j.getNom());
 	}
 
+	/**
+	 * On teste si la liste contient bien les bateaux
+	 */
 	@Test
 	void testGetListe_bateau() {
 		Grille g = new Grille(1567, 234);
@@ -56,6 +65,9 @@ class JoueurTests {
 		assertEquals("la liste devrait etre de taille 2", 2, ll.size());
 	}
 
+	/**
+	 * On teste si les bateaux sont biens tries
+	 */
 	@Test
 	void testAfficherListe_bateauParTaille() {
 		Grille g = new Grille(1567, 234);
@@ -71,6 +83,10 @@ class JoueurTests {
 		assertEquals("le deuxieme element doit etre b1", b1, lb.get(1));
 	}
 
+
+	/**
+	 * On teste si les bateaux sont biens tries
+	 */
 	@Test
 	void testAfficherListe_bateauParImpact() {
 		Grille g = new Grille(1567, 234);
@@ -88,6 +104,9 @@ class JoueurTests {
 		assertEquals("le deuxieme element doit etre b2", b2, lb.get(0));
 	}
 
+	/**
+	 * On teste si la grille retournee est bien la bonne
+	 */
 	@Test
 	void testGetGrille() {
 		Grille g = new Grille(1567, 234);
@@ -98,6 +117,9 @@ class JoueurTests {
 		assertEquals("la grille doit etre la grille g", g, j.getGrille());
 	}
 
+	/**
+	 * On teste si le bateau a bien subi un tir
+	 */
 	@Test
 	void testSubirTir() {
 		Grille g = new Grille(1567, 234);
@@ -119,9 +141,12 @@ class JoueurTests {
 			e.printStackTrace();
 		}
 		assertEquals("le bateau doit avoir subi un tir" ,true, j.subirTir(c1, c1));
-		assertEquals("b1 devrait avoir 2 pv", 2, b1.getPv());
+		assertEquals("b1 devrait avoir 2 pv au lieu de 3", 2, b1.getPv());
 	}
 
+	/**
+	 * On teste si le tir a bien ete effectue
+	 */
 	@Test
 	void testLancerTir() {
 		Grille g = new Grille(1567, 234);
@@ -151,6 +176,9 @@ class JoueurTests {
 		assertEquals("b1 devrait avoir 2 pv", 2, b1.getPv());
 	}
 
+	/**
+	 * On coule tous les bateaux d'un joueur et on verifie si ce joueur a bien perdu la partie
+	 */
 	@Test
 	void testAPerdu() {
 		Grille g = new Grille(1567, 234);

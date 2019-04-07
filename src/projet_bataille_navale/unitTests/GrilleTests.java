@@ -18,6 +18,9 @@ import projet_bataille_navale.Torpilleur;
 
 class GrilleTests {
 
+	/**
+	 * test constructeur
+	 */
 	@Test
 	void testGrille() {
 		Grille g = new Grille(19, 20);
@@ -27,18 +30,19 @@ class GrilleTests {
 
 	}
 
+	/**
+	 * On teste getTailleX() et getTailleY()
+	 */
 	@Test
-	void testGetTailleX() {
-		Grille g = new Grille(20, 20);
+	void testGetTaille() {
+		Grille g = new Grille(20, 19);
 		assertEquals("la grille doit etre de hauteur 20", 20, g.getTailleX());
+		assertEquals("la grille doit etre de largeur 19", 19, g.getTailleY());
 	}
 
-	@Test
-	void testGetTailleY() {
-		Grille g = new Grille(20, 20);
-		assertEquals("la grille doit etre de largeur 20", 20, g.getTailleY());
-	}
-
+	/**
+	 * On positionne un bateau sur la grille et on verifie si il est bien sur la bonne case
+	 */
 	@Test
 	void testPositionnerBateau() {
 		Grille g = new Grille(10, 10);
@@ -56,16 +60,19 @@ class GrilleTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Case c1 = null;
+		Case c2 = null;
 		try {
-			c1 = g.getCase(5, 5);
+			c2 = g.getCase(5, 5);
 		} catch (ExceptionHorsDuTableau e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertEquals("le bateau devrait etre sur la grille", true, c1.etreOccupee());
+		assertEquals("le bateau devrait etre sur la grille", true, c2.etreOccupee());
 	}
 
+	/**
+	 * On teste si les coordonnees retournees sont les bonnes
+	 */
 	@Test
 	void testGetCase() {
 		Grille g = new Grille(12, 10);

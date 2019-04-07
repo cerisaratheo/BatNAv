@@ -18,6 +18,9 @@ import projet_bataille_navale.Torpilleur;
 
 class SauvegardeTests {
 
+	/**
+	 * On teste la sauvegarde et le chargement d'une partie en cours
+	 */
 	@Test
 	void testSauve() {
 		Grille g = new Grille(15, 12);

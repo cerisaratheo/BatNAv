@@ -29,6 +29,11 @@ public class GraphiqueTest extends Graphique {
 	}
 	
 	@Override
+	/**
+	 * methode pour jouer
+	 * @param g grille avec laquelle on joue
+	 * @param j joueur qui joue
+	 */
 	public void jouer(Grille g, Joueur j) {
 		Grille gtirs = new Grille(g.getTailleX(), g.getTailleY());
 		//Iteration de jeu
@@ -57,6 +62,11 @@ public class GraphiqueTest extends Graphique {
 	}
 
 	@Override
+	/**
+	 * methode pour positionner un bateau sur la grille
+	 * @param g grille sur laquelle on veut positionner le bateau
+	 * @param j joueur qui positionne le bateau
+	 */
 	public void positionnerBateau(Grille g, Joueur j) {
 		for (int i=0; i<j.getListe_bateau().size(); i++) {
 			try {
@@ -89,6 +99,10 @@ public class GraphiqueTest extends Graphique {
 	}
 
 	@Override
+	/**
+	 * methode pour donner au jeu les informations necessaires (nom du joueur, taille de la grille)
+	 * @return un tableau d'objet qui contient les informations du jeu (nom du joueur, taille de la grille)
+	 */
 	public Object[] initJeu() {
 		// +8 car il faut une taille mini pour pouvoir poser tous les bateaux
 		int taille_grille_x = rd.nextInt(20)+8;
@@ -99,6 +113,9 @@ public class GraphiqueTest extends Graphique {
 		return infos;
 	}
 
+	/**
+	 * methode pour afficher la fenetre graphique 
+	 */
 	public static void jeuGraphiqueAuto() {
 		//Initialisation des variables.
 		Grille grille_1;

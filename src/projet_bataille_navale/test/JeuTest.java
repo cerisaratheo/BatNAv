@@ -14,6 +14,10 @@ import projet_bataille_navale.Sous_marin;
 import projet_bataille_navale.Torpilleur;
 
 public class JeuTest {
+
+	/**
+	 * methode pour lancer le jeu en mode automatique
+	 */
 	public static void jeuConsoleAuto() {
 		//Initialisation des variables.
 		Grille grille_1;

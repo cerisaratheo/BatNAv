@@ -25,20 +25,34 @@ public class GrillePanel extends JPanel {
 	private GrilleAction reaction = null;
 	private ArrayList<int[]> casesFantomes = new ArrayList<int[]>();
 
+	/**
+	 * methode pour effacer les cases affichee en transparence avant de poser le bateau
+	 */
 	public void clearCasesFantomes() {
 		casesFantomes.clear();
 	}
 
+	/**
+	 * methode pour ajouter les cases affichee en transparence avant de poser le bateau
+	 * @param x,y coordonnées des cases en transparence
+	 */
 	public void addCasesFantomes(int x, int y) {
 		int[] cc = {x,y};
 		casesFantomes.add(cc);
 	}
 
+	/**
+	 * methode pour définir comment le systeme réagit aux actions de la souris sur la grille
+	 * @param a objet qui implémente les actions a réaliser lorsque la souris bouge ou clique
+	 */
 	public void setReaction(GrilleAction a) {
 		this.requestFocusInWindow();
 		reaction = a;
 	}
 	
+	/**
+	 * constructeur 
+	 */
 	public GrillePanel() {
 		super();
 	
@@ -93,11 +107,20 @@ public class GrillePanel extends JPanel {
 		});
 	}
 
+	/**
+	 * methode pour définir la grille a afficher
+	 * @param g grille a afficher
+	 */
 	public void setGrille(Grille g) {
 		this.g=g;
 		repaint();
 	}
 
+	/**
+	 * methode pour recuperer la case sur laquelle on clique
+	 * @param x,y coordonnées de la souris au moment du clic
+	 * @return la case sur laquelle on veut cliquer
+	 */
 	private Case getCaseOnClick(int x, int y) {
 		if (g==null) return null;
 		int w = getWidth();
@@ -114,6 +137,12 @@ public class GrillePanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * methode pour convertir les coordonees d'une case en coordonnees d'ecran
+	 * @param cx ligne de la case
+	 * @param cy colonne de la case
+	 * @return un tableau d'entier qui contient les coordonnees du coin de la case et la hauteur et largeur de la case en pixels
+	 */
 	private int[] getXY(int cx, int cy) {
 		int w = getWidth();
 		int h = getHeight();
@@ -127,6 +156,10 @@ public class GrillePanel extends JPanel {
 		return res;
 	}
 
+	/**
+	 * methode pour afficher les elements de la fenetre
+	 * @param gr objet Graphics provenant de awt
+	 */
 	public void paintComponent(Graphics gr) {
 		super.paintComponent(gr);
 		int w = getWidth();

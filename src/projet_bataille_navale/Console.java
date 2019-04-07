@@ -9,7 +9,9 @@ public class Console implements GUI {
 
 	@Override
 	/**
-	 * @param g contient une grille avec des bateaux poses  
+	 * methode pour jouer une partie
+	 * @param g contient une grille avec des bateaux poses 
+	 * @param j joueur qui joue la partie 
 	 */
 	public void jouer(Grille g, Joueur j) {
 		// on cree une grille vide pour les tirs
@@ -21,7 +23,7 @@ public class Console implements GUI {
 				String continuer;
 
 				// pour cacher les bateaux poses
-				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");
+				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 				System.out.println("Voici VOTRE grille : ");
 				gtirs.afficherGrille();
 
@@ -72,6 +74,11 @@ public class Console implements GUI {
 	}
 
 	@Override
+	/**
+	* methode pour positionner un bateau sur la grille
+	* @param g grille sur laquelle on veut positionner le bateau
+	* @param j joueur a qui appartient le bateau
+	*/
 	public void positionnerBateau(Grille g, Joueur j) {
 		//Stats joueur_1
 		System.out.println("\nJoueur 1, " + j.getNom() + " :\n");
@@ -120,6 +127,10 @@ public class Console implements GUI {
 	}
 
 	@Override
+	/**
+	 * methode pour donner au jeu les informations necessaires (nom du joueur, taille de la grille)
+	 * @return un tableau d'objet qui contient les informations du jeu (nom du joueur, taille de la grille)
+	 */
 	public Object[] initJeu() {
 		System.out.println("\nBataille navale.\nMode de jeu : Mono-Joueur");
 		System.out.println("Choix de le taille de la grille ,\nx : \n");	

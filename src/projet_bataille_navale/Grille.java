@@ -31,12 +31,14 @@ public class Grille implements Serializable {
 	}
 
 	/**
-	 * @return the taille
+	 * @return la hauteur de la grille
 	 */
 	public int getTailleX() {
 		return taille_x;
 	}
-
+	/**
+	 * @return la largeur de la grille
+	 */
 	public int getTailleY() {
 		return taille_y;
 	}
@@ -46,6 +48,8 @@ public class Grille implements Serializable {
 	 * @param p_bateau bateau qui va etre place sur p_grille
 	 * @param p_case point d'encrage du bateau sur la grille
 	 * @return true si le bateau a bien ete place
+	 * @throws ExceptionHorsDuTableau
+	 * @throws ExceptionGrille
 	 */
 	public boolean positionnerBateau(Bateau p_bateau, Case p_case) throws ExceptionHorsDuTableau, ExceptionGrille {
 		int longueur = p_bateau.getLongueur();
@@ -67,6 +71,15 @@ public class Grille implements Serializable {
 		}
 		return false;
 	}
+
+	/**
+	 * methode qui sert a tester si un bateau peut etre pose sur une case
+	 * @param p_bateau bateau a positionner
+	 * @param p_case case a tester
+	 * @return un boolen qui vaut true si le bateau peut etre pose
+	 * @throws ExceptionHorsDuTableau
+	 * @throws ExceptionGrille
+	 */
 	public boolean testPositionnerBateau(Bateau p_bateau, Case p_case) throws ExceptionHorsDuTableau, ExceptionGrille {
 		int longueur = p_bateau.getLongueur();
 		if (p_bateau.getOrientation() == HORIZONTAL) {
@@ -146,6 +159,7 @@ public class Grille implements Serializable {
 	 * @param p_x coordonnee x de la case cherchee
 	 * @param p_y coordonnee y de la case cherchee
 	 * @return la case cherchee
+	 * @throws ExceptionHorsDuTableau
 	 */
 	public Case getCase(int p_x, int p_y) throws ExceptionHorsDuTableau {
 		if (p_x < 0 || p_x >= taille_x || p_y < 0 || p_y >= taille_y) {

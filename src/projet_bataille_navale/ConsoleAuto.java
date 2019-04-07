@@ -8,6 +8,11 @@ public class ConsoleAuto implements GUI {
 	private Random rd = new Random();
 
 	@Override
+	/**
+	 * methode pour jouer une partie
+	 * @param g contient une grille avec des bateaux poses 
+	 * @param j joueur qui joue la partie 
+	 */
 	public void jouer(Grille g, Joueur j) {
 		// test de la sauvegarde et du load
 		Sauvegarde sauveur = new Sauvegarde(j, "jeu.sauve");
@@ -39,6 +44,11 @@ public class ConsoleAuto implements GUI {
 	}
 
 	@Override
+	/**
+	* methode pour positionner un bateau sur la grille
+	* @param g grille sur laquelle on veut positionner le bateau
+	* @param j joueur a qui appartient le bateau
+	*/
 	public void positionnerBateau(Grille g, Joueur j) {
 		for (int i=0; i<j.getListe_bateau().size(); i++) {
 			try {
@@ -70,6 +80,10 @@ public class ConsoleAuto implements GUI {
 	}
 
 	@Override
+	/**
+	 * methode pour donner au jeu les informations necessaires (nom du joueur, taille de la grille)
+	 * @return un tableau d'objet qui contient les informations du jeu (nom du joueur, taille de la grille)
+	 */
 	public Object[] initJeu() {
 		// +8 car il faut une taille mini pour pouvoir poser tous les bateaux
 		int taille_grille_x = rd.nextInt(20)+8;

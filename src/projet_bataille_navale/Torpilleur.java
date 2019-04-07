@@ -18,7 +18,7 @@ public class Torpilleur extends Bateau {
 	}
 
 	/**
-	 * @return the taille
+	 * @return la taille du bateau
 	 */
 	public int getTaille() {
 		return taille;
