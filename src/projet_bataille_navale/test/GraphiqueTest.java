@@ -99,7 +99,7 @@ public class GraphiqueTest extends Graphique {
 		return infos;
 	}
 
-	public static void main(String[] args) {
+	public static void jeuGraphiqueAuto() {
 		//Initialisation des variables.
 		Grille grille_1;
 		Joueur joueur_1;

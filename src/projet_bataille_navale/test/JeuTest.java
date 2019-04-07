@@ -14,7 +14,7 @@ import projet_bataille_navale.Sous_marin;
 import projet_bataille_navale.Torpilleur;
 
 public class JeuTest {
-	public static void main(String[] args) {
+	public static void jeuConsoleAuto() {
 		//Initialisation des variables.
 		Grille grille_1;
 		Joueur joueur_1;

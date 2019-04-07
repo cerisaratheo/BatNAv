@@ -317,7 +317,7 @@ public class Graphique extends JPanel implements GUI {
 		return infos;
 	}
 
-	public static void main(String[] args) {
+	public static void jeuGraphique() {
 		JFrame jf = new JFrame("Bataille navale");
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Graphique g = new Graphique();

@@ -3,7 +3,7 @@ package projet_bataille_navale;
 import java.util.*;
 
 public class Jeu {
-	public static void main(String[] args) {
+	public static void jeuConsole() {
 		///////////////////////////////////
 		///////////MONO-JOUEUR/////////////
 		///////////////////////////////////
