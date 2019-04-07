@@ -94,3 +94,5 @@ Nous utilisons la librairie JUnit-5 pour les tests unitaires.
 
 Pour les lancer, exécuter soit le script compileAndRunTests.bat sous Windows, soit le script compileAndRunTests.sh sous Linux.
 
+![Le resultat des tests](resTestsUnit.jpg)
+
