@@ -6,6 +6,8 @@ auteurs :
 
 Ce projet est accessible en ligne sur https://github.com/cerisaratheo/BatNAv
 
+Ne pas tenir compte de l'identité des commiteurs, Théo a centralisé les commits et les push.
+
 ## Description
 
 Bataille navale en mode mono-joueur (le joueur joue contre lui même), en mode texte (en ligne de commande) ou graphique (le joueur joue à la souris). 
@@ -33,6 +35,9 @@ qui vous donnera la possibilité de choisir l'un des 4 modes de jeu:
 - ConsoleAuto : le programme joue tout seul contre lui-même. Il n'y a aucune interaction avec le joueur. Ce mode sert à tester le jeu.
 - Graphique : le joueur voit la grille dans un JPanel Swing et interagit avec le jeu via la souris.
 - GraphiqueTest : mode graphique automatique
+
+Enfin, un fichier projet.jar est egalement present: il vous suffit de double-cliquer dessus pour automatiquement
+lancer le mode graphique.
 
 # Explication des diagrammes UML
 Le code source des diagrammes UML ainsi que les PNG se trouvent dans uml/

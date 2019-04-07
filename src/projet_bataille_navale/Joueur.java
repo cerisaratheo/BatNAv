@@ -107,6 +107,7 @@ public class Joueur implements Serializable {
 			caseDeTir.devenirTouchee();
 			return true;
 		} else {
+			caseDeTir.devenirTouchee();
 			p_position.devenirTouchee();
 			return false;
 		}
