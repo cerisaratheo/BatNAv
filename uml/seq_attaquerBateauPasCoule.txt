@@ -1,17 +1,30 @@
 @startuml
-actor Joueur
-Console -> Joueur : print "case x, y ?"
-Joueur -> Console: 5, 2
-Console -> jeu : attaque(5, 2)
-activate jeu
-jeu -> Case52 : attaque(5, 2)
-activate Case52
-Case52 -> Bateau : verifieSiCoule()
-activate Bateau
-Bateau -> Case52 : vrai=isTouche()
-Bateau -> Case53 : faux=isTouche()
-return nonCoule
-return nonCoule
-return nonCoule
-Console -> Joueur : print "Bateau touché mais non coulé"
+actor Humain
+Jeu -> Console: jouer(grille,joueur)
+Console -> GrilleTirs ** : create
+Console -> GrilleTirs : afficherGrille()
+Console -> Humain : print "case x, y ?"
+activate Humain
+return 5,2
+Console -> Joueur: GrilleBateaux = getGrille()
+Console -> GrilleBateaux : CaseBateau = getCase(5,2)
+Console -> GrilleTirs : CaseTirs = getCase(5,2)
+Console -> Joueur : lancerTir(caseBateau,caseTirs)
+activate Joueur
+Joueur -> CaseBateau : true = etreTouchee()
+Joueur -> Joueur : subirTir(CaseBateau, CaseTirs)
+Joueur -> CaseBateau : true = etreOccupee()
+Joueur -> CaseBateau : Bateau = occupePar()
+Joueur -> CaseTirs : devenirOccupee(Bateau)
+Joueur -> CaseBateau : false = etreTouchee()
+Joueur -> Bateau : moinsUnPv()
+Joueur -> CaseBateau : devenirTouchee()
+Joueur -> CaseTirs : devenirTouchee()
+return true
+Console -> Joueur : aPerdu()
+activate Joueur
+Joueur -> Joueur : true = autres_bateaux.etreCoule()
+Joueur -> Bateau : false = etreCoule()
+return false
+Console -> Humain : print "Bateau touché mais non coulé"
 @enduml
