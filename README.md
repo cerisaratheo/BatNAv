@@ -79,6 +79,16 @@ Nous avons choisi 3 scénario:
 - La Grille vérifie alors que le bateau peut être posé à cet endroit, puis itère sur toutes les cases sur lesquelles le bateau doit être posé et appelle "devenirOccupee()" pour chacune.
 - La Console affiche enfin la grille
 
+### Attaquer un bateau sans le couler
+
+- La Console récupère tous les objets impliqués dans l'attaque: grille, bateau et case
+- La Console crée une deuxième grille pour "cacher" les bateaux et permettre au joueur de tirer sans voir les bateaux
+- L'objet Joueur mets à jour les cases (si elles sont touchées), gère les points de vie des bateaux et vérifie si la partie est finie
+
+### Attaquer un bateau en le coulant
+
+Test presque identique au précédent, sauf pour la fin qui se résoud par la fin du jeu.
+
 # Javadoc
 
 La javadoc se trouve dans le répertoire javadocs/
