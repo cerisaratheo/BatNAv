@@ -13,6 +13,7 @@ public abstract class Bateau implements Serializable {
 
 	/**
 	 * Constructeur d'un bateau
+	 * @param p_nom nom du bateau
 	 * @param p_longueur longueur du bateau
 	 * @param p_orientation orientation du bateau sur la grille
 	 */
@@ -60,7 +61,7 @@ public abstract class Bateau implements Serializable {
 	}
 
 	/**
-	 * @param pv the pv to set
+	 * decremente les points de vie du bateau
 	 */
 	public void moinsUnPv() {
 		this.pv = this.pv-1;

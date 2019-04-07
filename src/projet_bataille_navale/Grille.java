@@ -16,7 +16,8 @@ public class Grille implements Serializable {
 
 	/**
 	 * Constructeur pour initialiser une grille a partir d'une taille
-	 * @param taille_x taille de la grille
+	 * @param p_taille_x hauteur de la grille
+	 * @param p_taille_y largeur de la grille
 	 */
 	public Grille(int p_taille_x, int p_taille_y) {
 		this.taille_x = p_taille_x;
@@ -42,7 +43,6 @@ public class Grille implements Serializable {
 
 	/**
 	 * Methode qui positionne un bateau sur la grille.
-	 * @param p_grille grille sur laquelle va se placer le bateau
 	 * @param p_bateau bateau qui va etre place sur p_grille
 	 * @param p_case point d'encrage du bateau sur la grille
 	 * @return true si le bateau a bien ete place

@@ -4,6 +4,8 @@ auteurs :
 - SAKER Lucas
 - CERISARA Théo
 
+Ce projet est accessible en ligne sur https://github.com/cerisaratheo/BatNAv
+
 ## Description
 
 Bataille navale en mode mono-joueur (le joueur joue contre lui même), en mode texte (en ligne de commande) ou graphique (le joueur joue à la souris). 
@@ -79,4 +81,10 @@ Nous avons choisi 3 scénario:
 
 # Javadoc
 
+La javadoc se trouve dans le répertoire javadocs/
+
+Elle peut être regénérée avec la commande:
+
+    cd javadocs
+    javadoc -cp ../src projet_bataille_navale
 
