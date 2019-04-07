@@ -88,3 +88,9 @@ Elle peut être regénérée avec la commande:
     cd javadocs
     javadoc -cp ../src projet_bataille_navale
 
+# Tests unitaires
+
+Nous utilisons la librairie JUnit-5 pour les tests unitaires.
+
+Pour les lancer, exécuter soit le script compileAndRunTests.bat sous Windows, soit le script compileAndRunTests.sh sous Linux.
+
