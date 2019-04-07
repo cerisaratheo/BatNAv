@@ -287,7 +287,7 @@ public class Graphique extends JPanel implements GUI {
 
 			@Override
 			/**
-			 * methode pour poser le bateau une fois qu'on a cliqué
+			 * methode pour poser le bateau une fois qu'on a clique
 			 * @param c case sur laquelle se trouve la souris
 			 */
 			public void clicSurGrille(Case c) {
@@ -348,7 +348,7 @@ public class Graphique extends JPanel implements GUI {
 						afficheMessage("Vous pouvez positionner les bateaux");
 						positionnerBateau(grille_1, joueur_1);
 					} catch (Exception e1) {
-						afficheMessage("Tailles X et Y du plateau ? (Entrez 2 entiers séparés par un espace !)");
+						afficheMessage("Tailles X et Y du plateau ? (Entrez 2 entiers separes par un espace !)");
 					}
 				}
 			}
