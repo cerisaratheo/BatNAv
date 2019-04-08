@@ -39,6 +39,10 @@ qui vous donnera la possibilité de choisir l'un des 4 modes de jeu:
 Enfin, un fichier projet.jar est egalement present: il vous suffit de double-cliquer dessus pour automatiquement
 lancer le mode graphique.
 
+Pour définir la taille de la grille en mode graphique, il faut entrer 2 entiers separes par un espace (par exemple : "10 12") dans le champ texte situé en haut de la fenetre.
+
+Pour changer l'orientation du bateau en mode graphique, il faut cliquer avec le bouton droit de la souris.
+
 # Explication des diagrammes UML
 Le code source des diagrammes UML ainsi que les PNG se trouvent dans uml/
 
