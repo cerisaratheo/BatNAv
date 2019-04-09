@@ -4,8 +4,6 @@ auteurs :
 - SAKER Lucas
 - CERISARA Théo
 
-Ce projet est accessible en ligne sur https://github.com/cerisaratheo/BatNAv
-
 Ne pas tenir compte de l'identité des commiteurs, Théo a centralisé les commits et les push.
 
 ## Description
