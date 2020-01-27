@@ -4,7 +4,7 @@ auteurs :
 - SAKER Lucas
 - CERISARA Théo
 
-Ne pas tenir compte de l'identité des commiteurs, Théo a centralisé les commits et les push.
+Ne pas tenir compte de l'identité des commiteurs, Théo a centralisé les commits et les pushs.
 
 ## Description
 
